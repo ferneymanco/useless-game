@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardRegular } from './dashboard-regular';
+import { RegularDashboardComponent } from './dashboard-regular';
 
-describe('DashboardRegular', () => {
-  let component: DashboardRegular;
-  let fixture: ComponentFixture<DashboardRegular>;
+describe('RegularDashboardComponent', () => {
+  let component: RegularDashboardComponent;
+  let fixture: ComponentFixture<RegularDashboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardRegular]
+      imports: [RegularDashboardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardRegular);
+    fixture = TestBed.createComponent(RegularDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

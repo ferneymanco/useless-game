@@ -1,21 +1,14 @@
 import { Routes } from '@angular/router';
+import { AptitudeTestComponent } from './features/aptitude-test/aptitude-test.component';
+import { PlayerProfileComponent } from './features/profile/player-profile.component';
+import { RegularDashboardComponent } from './dashboard-regular/dashboard-regular';
+import { EliteDashboardComponent } from './dashboard-elite/dashboard-elite';
+import { EliteGuard } from './core/guards/elite.guard';
 
 export const routes: Routes = [
-  {
-    path: 'dashboard-regular',
-    loadComponent: () => import('./dashboard-regular/dashboard-regular').then(m => m.DashboardRegular)
-  },
-  {
-    path: 'dashboard-elite',
-    loadComponent: () => import('./dashboard-elite/dashboard-elite').then(m => m.DashboardElite)
-  },
-  {
-    path: 'profile',
-    loadComponent: () => import('./profile/profile').then(m => m.Profile)
-  },
-  {
-    path: 'aptitud-test',
-    loadComponent: () => import('./aptitud-test/aptitud-test').then(m => m.AptitudTest)
-  },
-  { path: '', redirectTo: 'dashboard-regular', pathMatch: 'full' }
+  { path: 'test', component: AptitudeTestComponent },
+  { path: 'profile', component: PlayerProfileComponent },
+  { path: 'dashboard', component: RegularDashboardComponent },
+  { path: 'elite-access', component: EliteDashboardComponent, canActivate: [EliteGuard] },
+  //{ path: '', redirectTo: '/test', pathMatch: 'full' }
 ];

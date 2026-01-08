@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardElite } from './dashboard-elite';
+import { EliteDashboardComponent } from './dashboard-elite';
 
-describe('DashboardElite', () => {
-  let component: DashboardElite;
-  let fixture: ComponentFixture<DashboardElite>;
+describe('EliteDashboardComponent', () => {
+  let component: EliteDashboardComponent;
+  let fixture: ComponentFixture<EliteDashboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardElite]
+      imports: [EliteDashboardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardElite);
+    fixture = TestBed.createComponent(EliteDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

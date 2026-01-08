@@ -1,5 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/*@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+/* src/styles.scss */
+:root {
+  --aethelgard-green: #39FF14;
+  --aethelgard-amber: #FFB000;
+  --aethelgard-bg: #0D0D0D;
+  --aethelgard-panel: #1A1A1A;
+}
+
+body {
+  background-color: var(--aethelgard-bg);
+  color: var(--aethelgard-green);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.aethelgard-card {
+  background: var(--aethelgard-panel) !important;
+  border: 1px solid var(--aethelgard-green);
+  color: var(--aethelgard-green) !important;
+}
