@@ -3,19 +3,19 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'dashboard-regular',
-    loadComponent: () => import('./dashboard-regular/dashboard-regular.component').then(m => m.DashboardRegularComponent)
+    loadComponent: () => import('./dashboard-regular/dashboard-regular').then(m => m.DashboardRegular)
   },
   {
     path: 'dashboard-elite',
-    loadComponent: () => import('./dashboard-elite/dashboard-elite.component').then(m => m.DashboardEliteComponent)
+    loadComponent: () => import('./dashboard-elite/dashboard-elite').then(m => m.DashboardElite)
   },
   {
     path: 'profile',
-    loadComponent: () => import('./profile/profile.component').then(m => m.ProfileComponent)
+    loadComponent: () => import('./profile/profile').then(m => m.Profile)
   },
   {
     path: 'aptitud-test',
-    loadComponent: () => import('./aptitud-test/aptitud-test.component').then(m => m.AptitudTestComponent)
+    loadComponent: () => import('./aptitud-test/aptitud-test').then(m => m.AptitudTest)
   },
   { path: '', redirectTo: 'dashboard-regular', pathMatch: 'full' }
 ];
