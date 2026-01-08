@@ -1,78 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AptitudeService } from '../../core/services/aptitude.service';
+import { AptitudeQuestion } from '../../core/models/aptitude.model';
+import { PlayerService } from '../../core/services/player.service';
+import { PlayerRole } from '../../core/models/player.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-aptitude-test',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatRadioModule, MatButtonModule, FormsModule],
-  template: `
-    <div class="test-container">
-      <mat-card class="aethelgard-card">
-        <mat-card-header>
-          <mat-card-title>PROTOCOLO DE EVALUACIÓN v1.0</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div *ngIf="!completed; else results">
-            <h3>Pregunta {{currentStep + 1}} de {{questions.length}}</h3>
-            <p class="question-text">{{questions[currentStep].text}}</p>
-            
-            <mat-radio-group [(ngModel)]="selectedAnswer" class="options-group">
-              <mat-radio-button *ngFor="let opt of questions[currentStep].options" [value]="opt.role">
-                {{opt.text}}
-              </mat-radio-button>
-            </mat-radio-group>
-          </div>
-          
-          <ng-template #results>
-            <div class="results-screen">
-              <h2>ANÁLISIS COMPLETADO</h2>
-              <p>Tu perfil asignado es: <strong>{{assignedRole | uppercase}}</strong></p>
-              <button mat-raised-button color="primary" (click)="finalize()">ACEPTAR ROL Y DESCARGAR APP</button>
-            </div>
-          </ng-template>
-        </mat-card-content>
-        <mat-card-actions *ngIf="!completed">
-          <button mat-button (click)="next()" [disabled]="!selectedAnswer">SIGUIENTE ></button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  `,
-  styles: [`
-    .test-container { padding: 20px; display: flex; justify-content: center; }
-    .options-group { display: flex; flex-direction: column; margin: 20px 0; }
-    .question-text { font-size: 1.2rem; color: var(--aethelgard-amber); }
-  `]
+  imports: [CommonModule, MatCardModule, MatRadioModule, MatButtonModule, MatProgressBarModule, FormsModule],
+  templateUrl: './aptitude-test.component.html',
+  styleUrls: ['./aptitude-test.component.scss']
 })
-export class AptitudeTestComponent {
-  currentStep = 0;
-  selectedAnswer: string = '';
-  completed = false;
-  assignedRole = '';
+export class AptitudeTestComponent implements OnInit {
+  private aptitudeService = inject(AptitudeService);
+  private playerService = inject(PlayerService);
+  private router = inject(Router);
 
-  questions = [
-    { 
-      text: 'Detectas una anomalía en el RSSI de -30dBm. ¿Qué haces?', 
-      options: [
-        { text: 'Triangular la posición física.', role: 'tracker' },
-        { text: 'Inyectar un script de escucha.', role: 'hacker' }
-      ]
-    },
-    // Añadir el resto de preguntas aquí...
-  ];
+  questions = signal<AptitudeQuestion[]>([]);
+  currentIndex = signal(0);
+  selectedWeight = signal<string>('');
+  answers = signal<string[]>([]);
+  isFinished = signal(false);
+  finalRole = signal<string>('');
 
-  next() {
-    if (this.currentStep < this.questions.length - 1) {
-      this.currentStep++;
-      this.selectedAnswer = '';
+  ngOnInit() {
+    this.aptitudeService.getQuestions().subscribe(data => {
+      this.questions.set(data);
+    });
+  }
+
+  nextQuestion() {
+    this.answers.update(prev => [...prev, this.selectedWeight()]);
+    
+    if (this.currentIndex() < this.questions().length - 1) {
+      this.currentIndex.update(v => v + 1);
+      this.selectedWeight.set('');
     } else {
-      this.completed = true;
-      this.assignedRole = 'Hacker'; // Lógica de cálculo de rol
+      this.calculateResult();
     }
   }
 
-  finalize() { /* Redirigir a descarga de App o Donación */ }
+  calculateResult() {
+    const counts: any = {};
+    this.answers().forEach(role => { counts[role] = (counts[role] || 0) + 1; });
+    
+    // Find the role with the highest frequency
+    const sortedRoles = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    this.finalRole.set(sortedRoles[0] || 'recruit');
+    this.isFinished.set(true);
+  }
+
+  async saveAndOnboard() {
+    try {
+      // Trigger login first if not authenticated (PlayerService handles this usually, but finalization needs a UID)
+      await this.playerService.loginWithGoogle();
+      await this.playerService.createProfileAfterTest(this.finalRole() as any);
+      this.router.navigate(['/dashboard']);
+    } catch (error) {
+      console.error('Finalization failed:', error);
+      alert('Authentication or profile creation failed. Please try again.');
+    }
+  }
+
+  get progress() {
+    if (this.questions().length === 0) return 0;
+    return ((this.currentIndex() + 1) / this.questions().length) * 100;
+  }
 }
