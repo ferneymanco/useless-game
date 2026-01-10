@@ -50,24 +50,26 @@ export class PlayerService {
       isDonor: false,
       isElite: false,
       foundNodes: [],
-      unlockedFeatures: []
+      unlockedFeatures: [],
+      donorLevel: 'none'
     };
 
     const userDoc = doc(this.firestore, `players/${u.uid}`);
     await setDoc(userDoc, newProfile);
   }
 
-  async upgradeToDonor() {
-    const u = this.auth.currentUser;
-    if (u) {
-      const userDoc = doc(this.firestore, `players/${u.uid}`);
-      await updateDoc(userDoc, { 
-        isDonor: true, 
-        accessLevel: 2 
-      });
-      // Here you could trigger an email with the App link
-    }
+  async upgradeToDonor(orderId: string) {
+  const p = this.player();
+  if (p) {
+    const userDoc = doc(this.firestore, `players/${p.uid}`);
+    await updateDoc(userDoc, {
+      isDonor: true,
+      accessLevel: 2,
+      paymentId: orderId,
+      donorLevel: 'recruit'
+    });
   }
+}
 
   logout() {
     signOut(this.auth);

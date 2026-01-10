@@ -1,41 +1,67 @@
 <div class="test-container">
-  <mat-card class="aethelgard-card">
+  <mat-card class="aethelgard-card" *ngIf="!isFinished(); else terminalView">
     <mat-card-header>
       <mat-card-title>EVALUATION PROTOCOL v1.0</mat-card-title>
     </mat-card-header>
+
     <mat-card-content *ngIf="questions().length > 0; else loading">
-      <div *ngIf="!isFinished(); else results">
-        <h3>Question {{currentIndex() + 1}} of {{questions().length}}</h3>
-        <mat-progress-bar mode="determinate" [value]="progress" class="step-progress"></mat-progress-bar>
-        
-        <p class="question-text">{{questions()[currentIndex()].text}}</p>
-        
-        <mat-radio-group [ngModel]="selectedWeight()" (ngModelChange)="selectedWeight.set($event)" class="options-group">
-          <mat-radio-button *ngFor="let opt of questions()[currentIndex()].options" [value]="opt.roleWeight">
-            {{opt.text}}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
+      <h3>Question {{currentIndex() + 1}} of {{questions().length}}</h3>
+      <mat-progress-bar mode="determinate" [value]="progress" class="step-progress"></mat-progress-bar>
       
-      <ng-template #results>
-        <div class="results-screen">
-          <h2>ANALYSIS COMPLETED</h2>
-          <p>Your assigned profile is: <strong>{{finalRole() | uppercase}}</strong></p>
-          <button mat-raised-button color="primary" (click)="saveAndOnboard()">ACCEPT ROLE AND DOWNLOAD APP</button>
-        </div>
-      </ng-template>
+      <p class="question-text">{{questions()[currentIndex()].text}}</p>
+      
+      <mat-radio-group [ngModel]="selectedWeight()" (ngModelChange)="selectedWeight.set($event)" class="options-group">
+        <mat-radio-button *ngFor="let opt of questions()[currentIndex()].options" [value]="opt.roleWeight">
+          {{opt.text}}
+        </mat-radio-button>
+      </mat-radio-group>
     </mat-card-content>
 
     <ng-template #loading>
       <mat-card-content>
-        <p>Initializing analysis... Please wait.</p>
+        <p class="blink">Initializing analysis... Connection to Aethelgard established.</p>
       </mat-card-content>
     </ng-template>
     
-    <mat-card-actions *ngIf="!isFinished() && questions().length > 0">
+    <mat-card-actions *ngIf="questions().length > 0">
       <button mat-button (click)="nextQuestion()" [disabled]="!selectedWeight()">
         {{ currentIndex() === questions().length - 1 ? 'FINISH' : 'NEXT >' }}
       </button>
     </mat-card-actions>
   </mat-card>
+
+  <ng-template #terminalView>
+    <div class="terminal-results">
+      <div class="matrix-bg"></div>
+      
+      <mat-card class="aethelgard-card result-anim">
+        <mat-card-header>
+          <div mat-card-avatar class="scan-icon"></div>
+          <mat-card-title>DECRYPTING APTITUDE PROFILE...</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="console-logs">
+            <p *ngFor="let log of terminalLogs()">> {{ log }}</p>
+            <p class="blink" *ngIf="isProcessing()">_ PROCESSING_DATA...</p>
+          </div>
+
+          <div class="identity-revealed" *ngIf="!isProcessing()">
+            <h2 class="label">IDENTITY ASSIGNED:</h2>
+            <h1 class="role-title" [attr.data-role]="finalRole()">{{ finalRole() | uppercase }}</h1>
+            
+            <div class="role-description">
+              <p>{{ getRoleDescription() }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions *ngIf="!isProcessing()">
+          <button mat-raised-button color="accent" class="btn-initialize" (click)="saveAndOnboard()">
+            INITIALIZE NEURAL LINK
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-template>
 </div>

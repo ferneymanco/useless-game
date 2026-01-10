@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to read the aptitude test questions
+    match /aptitude_test_questions/{document=**} {
+      allow read: if true;
+    }
+    
+    // Default rule: require authentication for everything else
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { RegularDashboardComponent } from './features/dashboard/regular-dashboar
 import { EliteDashboardComponent } from './features/dashboard/elite-dashboard.component';
 import { DonationComponent } from './features/donation/donation.component';
 import { EliteGuard } from './core/guards/elite.guard';
+import { MissionDispatcherComponent } from './features/dashboard/components/mission-dispatcher/mission-dispatcher.component';
 
 export const routes: Routes = [
   { path: 'test', component: AptitudeTestComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'dashboard', component: RegularDashboardComponent },
   { path: 'donate', component: DonationComponent },
   { path: 'elite-access', component: EliteDashboardComponent, canActivate: [EliteGuard] },
+  { path: 'missions', component: MissionDispatcherComponent },
   //{ path: '', redirectTo: '/test', pathMatch: 'full' }
 ];

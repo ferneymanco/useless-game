@@ -30,6 +30,9 @@ export class AptitudeTestComponent implements OnInit {
   isFinished = signal(false);
   finalRole = signal<string>('');
 
+  terminalLogs = signal<string[]>([]);
+  isProcessing = signal(false);
+
   ngOnInit() {
     this.aptitudeService.getQuestions().subscribe(data => {
       this.questions.set(data);
@@ -47,25 +50,46 @@ export class AptitudeTestComponent implements OnInit {
     }
   }
 
-  calculateResult() {
+  async calculateResult() {
+
+    this.isFinished.set(true);
+    this.isProcessing.set(true);
+    
+    // Scoring logic
     const counts: any = {};
     this.answers().forEach(role => { counts[role] = (counts[role] || 0) + 1; });
-    
-    // Find the role with the highest frequency
-    const sortedRoles = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
-    this.finalRole.set(sortedRoles[0] || 'recruit');
-    this.isFinished.set(true);
+    this.finalRole.set(Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b));
+
+    // Visual simulation of data crunching
+    const sequence = [
+      "Analyzing behavioral patterns...",
+      "Cross-referencing signal heuristics...",
+      "Evaluating field response latency...",
+      "Bypassing ethical sub-routines...",
+      "Neural match found: " + this.finalRole().toUpperCase()
+    ];
+
+    for (const log of sequence) {
+      await new Promise(res => setTimeout(res, 800));
+      this.terminalLogs.update(prev => [...prev, log]);
+    }
+
+    this.isProcessing.set(false);
   }
 
   async saveAndOnboard() {
     try {
-      // Trigger login first if not authenticated (PlayerService handles this usually, but finalization needs a UID)
+      // 1. First, we need the user to be authenticated
       await this.playerService.loginWithGoogle();
+      
+      // 2. Once logged in, we create their profile with the assigned role
       await this.playerService.createProfileAfterTest(this.finalRole() as any);
+      
+      // 3. Success! Redirect to the main dashboard
       this.router.navigate(['/dashboard']);
     } catch (error) {
-      console.error('Finalization failed:', error);
-      alert('Authentication or profile creation failed. Please try again.');
+      console.error("Initialization failed:", error);
+      // You could show a "Neural Link Failed" message here
     }
   }
 
@@ -73,4 +97,14 @@ export class AptitudeTestComponent implements OnInit {
     if (this.questions().length === 0) return 0;
     return ((this.currentIndex() + 1) / this.questions().length) * 100;
   }
+
+  getRoleDescription(): string {
+  const descriptions: any = {
+    'hacker': 'Master of digital intrusion and cryptographic subversion.',
+    'engineer': 'Specialist in hardware manipulation and signal stability.',
+    'tracker': 'Expert in physical geolocation and urban infiltration.',
+    'analyst': 'Strategic mind focused on pattern recognition and OSINT.'
+  };
+  return descriptions[this.finalRole()] || 'Field operative in training.';
+}
 }

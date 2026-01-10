@@ -10,4 +10,6 @@ export interface PlayerProfile {
   isElite: boolean;
   foundNodes: string[];  // Array of node IDs discovered
   unlockedFeatures: string[]; // List of features unlocked through game or donations
+  donorLevel: string; // e.g., 'recruit'
+  paymentId?: string; // Para auditoría
 }

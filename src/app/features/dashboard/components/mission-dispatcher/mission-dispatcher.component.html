@@ -1,0 +1,37 @@
+<div class="dispatcher-container">
+  <div class="header">
+    <h3>AVAILABLE MISSIONS [ROLE: {{playerRole | uppercase}}]</h3>
+  </div>
+
+  <div class="mission-grid" *ngIf="missions$ | async as missions; else loading">
+    <mat-card *ngFor="let mission of missions" class="aethelgard-card mission-card">
+      <mat-card-header>
+        <div class="mission-type-tag">{{mission.type}}</div>
+        <mat-card-title>{{mission.title}}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <p class="description">{{mission.description}}</p>
+        <div class="reward-badge">
+          REWARD: {{mission.xpReward}} XP
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="openMission(mission)">
+          INITIALIZE PROTOCOL
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div *ngIf="missions.length === 0" class="no-missions">
+      <p class="blink">> NO MISSIONS ASSIGNED TO YOUR CURRENT PROFILE.</p>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="loading-state">
+      <p class="blink">> SCANNING FOR ENCRYPTED TASKS...</p>
+    </div>
+  </ng-template>
+</div>
