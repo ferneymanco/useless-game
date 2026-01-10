@@ -25,11 +25,13 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     provideFunctions(() => getFunctions()),
-    provideAppCheck(() => {
-      // Use ReCaptchaEnterpriseProvider with a dummy key for local development
-      // The debug token will be used if set in main.ts
-      const provider = new ReCaptchaEnterpriseProvider('dummy-key');
-      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-    }),
+    environment.production
+      ? [
+          provideAppCheck(() => {
+            const provider = new ReCaptchaEnterpriseProvider('dummy-key');
+            return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+          }),
+        ]
+      : [],
   ],
 };
