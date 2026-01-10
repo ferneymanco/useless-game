@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,10 +17,15 @@ export class MissionDispatcherComponent {
   private playerService = inject(PlayerService);
 
   // Obtenemos el rol del signal del jugador
-  playerRole = this.playerService.player()?.role || 'recruit';
+  playerRole = computed(() => this.playerService.player()?.role || 'recruit');
   
   // Obtenemos el observable de misiones disponibles
   missions$ = this.missionService.getAvailableMissions();
+
+  ngOnInit() {
+    console.log('Player role:', this.playerRole());
+    console.log('Missions:', this.missions$);
+  }
 
   openMission(mission: any) {
     console.log('Initializing mission protocol:', mission.title);

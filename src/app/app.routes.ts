@@ -14,5 +14,9 @@ export const routes: Routes = [
   { path: 'donate', component: DonationComponent },
   { path: 'elite-access', component: EliteDashboardComponent, canActivate: [EliteGuard] },
   { path: 'missions', component: MissionDispatcherComponent },
+  { 
+    path: 'admin', 
+    loadComponent: () => import('./features/admin/admin-console.component').then(m => m.AdminConsoleComponent) 
+  },
   //{ path: '', redirectTo: '/test', pathMatch: 'full' }
 ];

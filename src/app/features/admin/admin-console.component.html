@@ -1,0 +1,28 @@
+<div class="admin-wrapper">
+  <mat-card class="aethelgard-card admin-card">
+    <mat-card-header>
+      <mat-card-title>DEVELOPER OVERRIDE CONSOLE</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <section>
+        <h3>1. Database Seeding</h3>
+        <button mat-raised-button color="warn" (click)="admin.seedSampleMissions()">
+          GENERATE TEST MISSIONS
+        </button>
+      </section>
+
+      <mat-divider></mat-divider>
+
+      <section>
+        <h3>2. Role Simulation (Impersonation)</h3>
+        <div class="role-buttons">
+          <button mat-stroked-button (click)="admin.debug_setMyRole('hacker')">BE HACKER</button>
+          <button mat-stroked-button (click)="admin.debug_setMyRole('engineer')">BE ENGINEER</button>
+          <button mat-stroked-button (click)="admin.debug_setMyRole('tracker')">BE TRACKER</button>
+          <button mat-stroked-button (click)="admin.debug_setMyRole('analyst')">BE ANALYST</button>
+        </div>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</div>
