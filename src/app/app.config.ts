@@ -10,7 +10,12 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
-import { provideAppCheck, initializeAppCheck, ReCaptchaEnterpriseProvider } from '@angular/fire/app-check';
+import {
+  provideAppCheck,
+  initializeAppCheck,
+  ReCaptchaEnterpriseProvider,
+  CustomProvider,
+} from '@angular/fire/app-check';
 
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
@@ -25,13 +30,17 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     provideFunctions(() => getFunctions()),
-    environment.production
-      ? [
-          provideAppCheck(() => {
-            const provider = new ReCaptchaEnterpriseProvider('dummy-key');
-            return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-          }),
-        ]
-      : [],
+    provideAppCheck(() => {
+      const provider = environment.production
+        ? new ReCaptchaEnterpriseProvider('dummy-key')
+        : new CustomProvider({
+            getToken: () =>
+              Promise.resolve({
+                token: '709bfafe-b572-498e-85fa-fa0893ec1ad4',
+                expireTimeMillis: Date.now() + 3600000,
+              }),
+          });
+      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+    }),
   ],
 };
