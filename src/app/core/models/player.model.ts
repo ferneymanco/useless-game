@@ -12,4 +12,5 @@ export interface PlayerProfile {
   unlockedFeatures: string[]; // List of features unlocked through game or donations
   donorLevel: string; // e.g., 'recruit'
   paymentId?: string; // Para auditoría
+  completedMissions: string[]; // Array de IDs de misiones completadas
 }

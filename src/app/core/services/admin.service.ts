@@ -43,7 +43,7 @@ export class AdminService {
     if (p) {
       const userRef = doc(this.firestore, `players/${p.uid}`);
       await updateDoc(userRef, { role: newRole });
-      location.reload(); // Recargamos para que los signals se actualicen
+      //location.reload(); // Recargamos para que los signals se actualicen
     }
   }
 }
