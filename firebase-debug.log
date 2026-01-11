@@ -1,0 +1,107 @@
+[debug] [2026-01-11T23:22:04.609Z] ----------------------------------------------------------------------
+[debug] [2026-01-11T23:22:04.611Z] Command:       /usr/local/bin/firebase /home/ubuntu/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy --only functions
+[debug] [2026-01-11T23:22:04.611Z] CLI Version:   11.24.1
+[debug] [2026-01-11T23:22:04.611Z] Platform:      linux
+[debug] [2026-01-11T23:22:04.611Z] Node Version:  v16.16.0
+[debug] [2026-01-11T23:22:04.625Z] Time:          Sun Jan 11 2026 18:22:04 GMT-0500 (Colombia Standard Time)
+[debug] [2026-01-11T23:22:04.625Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-01-11T23:22:04.628Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-01-11T23:22:04.711Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"apphosting"}
+[debug] [2026-01-11T23:22:04.736Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-11T23:22:04.736Z] > authorizing via signed-in user (ferneymanco@gmail.com)
+[debug] [2026-01-11T23:22:04.736Z] [iam] checking project useless-game for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-01-11T23:22:04.737Z] > refreshing access token with scopes: []
+[debug] [2026-01-11T23:22:04.737Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-11T23:22:04.738Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:22:05.067Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-01-11T23:22:05.067Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-01-11T23:22:05.120Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-01-11T23:22:05.120Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:22:05.121Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions [none]
+[debug] [2026-01-11T23:22:05.121Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions x-goog-quota-user=projects/useless-game
+[debug] [2026-01-11T23:22:05.121Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-01-11T23:22:05.763Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions 401
+[debug] [2026-01-11T23:22:05.764Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"service":"cloudresourcemanager.googleapis.com","method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions"}}]}}
+[debug] [2026-01-11T23:22:05.764Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2026-01-11T23:22:05.765Z] > refreshing access token with scopes: []
+[debug] [2026-01-11T23:22:05.766Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-11T23:22:05.766Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:22:05.919Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-01-11T23:22:05.919Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:22:05.919Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-01-11T23:22:05.919Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-01-11T23:22:06.529Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions 401
+[debug] [2026-01-11T23:22:06.529Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.iam.admin.v1.IAM.TestIamPermissions","service":"iam.googleapis.com"}}]}}
+[debug] [2026-01-11T23:22:06.530Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.iam.admin.v1.IAM.TestIamPermissions","service":"iam.googleapis.com"}}]}},"response":{"statusCode":401}},"exit":1,"message":"HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":401}
+[info] 
+[info] === Deploying to 'useless-game'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-01-11T23:22:06.532Z] > refreshing access token with scopes: []
+[debug] [2026-01-11T23:22:06.532Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-11T23:22:06.532Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:22:06.704Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-01-11T23:22:06.704Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:22:06.705Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/useless-game [none]
+[debug] [2026-01-11T23:22:07.124Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/useless-game 401
+[debug] [2026-01-11T23:22:07.124Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/useless-game {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2026-01-11T23:22:07.125Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2026-01-11T23:22:07.361Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (/home/ubuntu/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/home/ubuntu/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project useless-game. Please make sure the project exists and your account has permission to access it.
+[debug] [2026-01-11T23:23:46.848Z] ----------------------------------------------------------------------
+[debug] [2026-01-11T23:23:46.849Z] Command:       /usr/local/bin/firebase /home/ubuntu/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy --only functions
+[debug] [2026-01-11T23:23:46.850Z] CLI Version:   11.24.1
+[debug] [2026-01-11T23:23:46.850Z] Platform:      linux
+[debug] [2026-01-11T23:23:46.850Z] Node Version:  v16.16.0
+[debug] [2026-01-11T23:23:46.850Z] Time:          Sun Jan 11 2026 18:23:46 GMT-0500 (Colombia Standard Time)
+[debug] [2026-01-11T23:23:46.850Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-01-11T23:23:46.908Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"apphosting"}
+[debug] [2026-01-11T23:23:46.918Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-11T23:23:46.918Z] > authorizing via signed-in user (ferneymanco@gmail.com)
+[debug] [2026-01-11T23:23:46.918Z] [iam] checking project useless-game for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-01-11T23:23:46.919Z] > refreshing access token with scopes: []
+[debug] [2026-01-11T23:23:46.921Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-11T23:23:46.921Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:23:47.144Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-01-11T23:23:47.144Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:23:47.145Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions [none]
+[debug] [2026-01-11T23:23:47.146Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions x-goog-quota-user=projects/useless-game
+[debug] [2026-01-11T23:23:47.146Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-01-11T23:23:47.610Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions 401
+[debug] [2026-01-11T23:23:47.610Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2026-01-11T23:23:47.610Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2026-01-11T23:23:47.611Z] > refreshing access token with scopes: []
+[debug] [2026-01-11T23:23:47.611Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-11T23:23:47.611Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:23:48.094Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-01-11T23:23:48.094Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:23:48.095Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-01-11T23:23:48.095Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-01-11T23:23:48.489Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions 401
+[debug] [2026-01-11T23:23:48.490Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.iam.admin.v1.IAM.TestIamPermissions","service":"iam.googleapis.com"}}]}}
+[debug] [2026-01-11T23:23:48.490Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.iam.admin.v1.IAM.TestIamPermissions","service":"iam.googleapis.com"}}]}},"response":{"statusCode":401}},"exit":1,"message":"HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":401}
+[info] 
+[info] === Deploying to 'useless-game'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-01-11T23:23:48.492Z] > refreshing access token with scopes: []
+[debug] [2026-01-11T23:23:48.492Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-11T23:23:48.492Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:23:48.682Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-01-11T23:23:48.682Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-11T23:23:48.683Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/useless-game [none]
+[debug] [2026-01-11T23:23:48.940Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/useless-game 401
+[debug] [2026-01-11T23:23:48.940Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/useless-game {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2026-01-11T23:23:48.940Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2026-01-11T23:23:49.116Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (/home/ubuntu/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/home/ubuntu/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project useless-game. Please make sure the project exists and your account has permission to access it.
