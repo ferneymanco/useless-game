@@ -51,7 +51,9 @@ export class PlayerService {
       isElite: false,
       foundNodes: [],
       unlockedFeatures: [],
-      donorLevel: 'none'
+      donorLevel: 'none',
+      // --- ESTA ES LA LÍNEA QUE FALTA ---
+      completedMissions: [] 
     };
 
     const userDoc = doc(this.firestore, `players/${u.uid}`);
