@@ -31,6 +31,9 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFunctions(() => getFunctions()),
     provideAppCheck(() => {
+      if (typeof (self as any).FIREBASE_APPCHECK_DEBUG_TOKEN === 'undefined') {
+    (self as any).FIREBASE_APPCHECK_DEBUG_TOKEN = '709bfafe-b572-498e-85fa-fa0893ec1ad4';
+  }
       const provider = environment.production
         ? new ReCaptchaEnterpriseProvider('dummy-key')
         : new CustomProvider({

@@ -37,5 +37,9 @@ export class XpProgressBarComponent {
   
   // Lógica simple: cada nivel requiere (Nivel * 500) XP
   nextLevelXp = computed(() => this.currentLevel() * 500);
-  progressPercentage = computed(() => (this.currentXp() / this.nextLevelXp()) * 100);
+  progressPercentage = computed(() => {
+    const xp = this.currentXp();
+    const nextXp = this.nextLevelXp();
+    return Math.min((xp / nextXp) * 100, 100); // No pasar de 100%
+  });
 }

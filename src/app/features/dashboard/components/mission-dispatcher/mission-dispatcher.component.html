@@ -18,8 +18,8 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button color="accent" (click)="openMission(mission)">
-          INITIALIZE PROTOCOL
+        <button mat-raised-button color="accent" [disabled]="mission.isCompleted" (click)="openMission(mission)">
+          {{ mission.isCompleted ? 'COMPLETED' : 'INITIALIZE' }}
         </button>
       </mat-card-actions>
     </mat-card>

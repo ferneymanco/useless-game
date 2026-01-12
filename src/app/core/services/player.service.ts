@@ -52,7 +52,6 @@ export class PlayerService {
       foundNodes: [],
       unlockedFeatures: [],
       donorLevel: 'none',
-      // --- ESTA ES LA LÍNEA QUE FALTA ---
       completedMissions: [] 
     };
 
