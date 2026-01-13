@@ -26,16 +26,18 @@ export const completeMission = functions.https.onCall(async (data, context) => {
     return { success: false, message: 'PROTOCOL_ALREADY_SYNCED' };
   }
 
+  if (missionData?.objectiveCode === inputCode) {// functions/src/missions.ts
+
+// ... (inicio igual) ...
+
   if (missionData?.objectiveCode === inputCode) {
     const xpReward = Number(missionData?.xpReward);
     const currentXp = Number(userData?.experience || 0);
     const currentLevel = Number(userData?.accessLevel || 1);
     
     const newXp = currentXp + xpReward;
-    
-    // --- CORRECCIÓN 2: LÓGICA DE NIVEL ---
-    // Si nivel 1 necesita 500, nivel 2 necesita 1000, etc.
     const xpThreshold = currentLevel * 500;
+    
     let finalLevel = currentLevel;
     let leveledUp = false;
 
@@ -44,17 +46,38 @@ export const completeMission = functions.https.onCall(async (data, context) => {
       leveledUp = true;
     }
 
+    // LOG DE DEPURACIÓN (Míralo en Firebase Console > Functions > Logs)
+    console.log(`Calculated for ${userId}: XP:${newXp}, LVL:${finalLevel}, UP:${leveledUp}`);
+
     const batch = admin.firestore().batch();
+    
     batch.update(userRef, {
       experience: newXp,
       accessLevel: finalLevel,
       completedMissions: admin.firestore.FieldValue.arrayUnion(missionId)
     });
 
-    // (Aquí va el código de los logs que pusimos antes...)
+    // IMPORTANTE: Asegúrate de incluir los Logs de actividad aquí para que el batch sea útil
+    const logRef = userRef.collection('logs').doc();
+    batch.set(logRef, {
+      type: 'MISSION_COMPLETE',
+      message: `Protocol ${missionData?.title} synchronized.`,
+      xpGained: xpReward,
+      timestamp: admin.firestore.FieldValue.serverTimestamp()
+    });
 
     await batch.commit();
-    return { success: true, newXp: xpReward, leveledUp: leveledUp, nextLevel: finalLevel };
+
+    // RETORNO EXPLÍCITO
+    const response = { 
+      success: true, 
+      newXp: xpReward, 
+      leveledUp: !!leveledUp, // Forzamos booleano
+      nextLevel: finalLevel 
+    };
+    
+    return response;
+  }
   }
   return { success: false, message: 'INVALID_CODE' };
 });
