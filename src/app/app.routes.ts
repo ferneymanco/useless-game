@@ -6,6 +6,8 @@ import { EliteDashboardComponent } from './features/dashboard/elite-dashboard.co
 import { DonationComponent } from './features/donation/donation.component';
 import { EliteGuard } from './core/guards/elite.guard';
 import { MissionDispatcherComponent } from './features/dashboard/components/mission-dispatcher/mission-dispatcher.component';
+import { DecryptorComponent } from './features/decryptor/decryptor.component';
+import { levelGuard } from './core/guards/level.guard';
 
 export const routes: Routes = [
   { path: 'test', component: AptitudeTestComponent },
@@ -17,6 +19,11 @@ export const routes: Routes = [
   { 
     path: 'admin', 
     loadComponent: () => import('./features/admin/admin-console.component').then(m => m.AdminConsoleComponent) 
+  },
+  { 
+    path: 'decryptor', 
+    component: DecryptorComponent,
+    canActivate: [levelGuard(2)]
   },
   //{ path: '', redirectTo: '/test', pathMatch: 'full' }
 ];

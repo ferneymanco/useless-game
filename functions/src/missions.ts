@@ -78,3 +78,42 @@ export const syncMissionProgress = functions.https.onCall(async (data, context) 
   }
   return { success: false, message: 'INVALID_CODE' };
 });
+
+export const processDecryption = functions.https.onCall(async (data, context) => {
+  if (!context.auth) throw new functions.https.HttpsError('unauthenticated', '...');
+
+  const userId = context.auth.uid;
+  const userRef = admin.firestore().collection('players').doc(userId);
+  const userSnap = await userRef.get();
+  const userData = userSnap.data();
+
+  // --- LÓGICA DE TIEMPO (COOLDOWN) ---
+  const now = Date.now();
+  const lastDecryption = userData?.lastDecryption || 0;
+  const twentyFourHours = 24 * 60 * 60 * 1000;
+
+  if (now - lastDecryption < twentyFourHours) {
+    const remaining = Math.ceil((twentyFourHours - (now - lastDecryption)) / (1000 * 60 * 60));
+    return { 
+      success: false, 
+      message: `SYSTEM_RECHARGING: ${remaining} hours remaining.` 
+    };
+  }
+
+  // --- RECOMPENSA ---
+  const xpReward = 50;
+  const newXp = (userData?.experience || 0) + xpReward;
+
+  await userRef.update({
+    experience: newXp,
+    lastDecryption: now,
+    // Podrías añadir un contador de "nodos descifrados"
+    decryptedNodes: admin.firestore.FieldValue.increment(1)
+  });
+
+  return { 
+    success: true, 
+    newXp: newXp,
+    message: 'SIGNAL_DECRYPTED_SUCCESSFULLY' 
+  };
+});
