@@ -7,7 +7,7 @@ import * as admin from 'firebase-admin';
  */
 // functions/src/missions.ts
 
-export const completeMission = functions.https.onCall(async (data, context) => {
+export const syncMissionProgress = functions.https.onCall(async (data, context) => {
   if (!context.auth) throw new functions.https.HttpsError('unauthenticated', '...');
 
   const { missionId, inputCode } = data;

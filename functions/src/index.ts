@@ -49,6 +49,4 @@ export const syncFieldNode = functions.https.onCall(async (data, context) => {
   };
 });
 
-export * from './payments';
-export * from './webhooks';
 export * from './missions';

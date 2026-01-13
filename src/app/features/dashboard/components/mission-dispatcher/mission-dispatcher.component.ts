@@ -59,8 +59,8 @@ nextLevelValue = 1;
     dialogRef.afterClosed().subscribe(async (code) => {
       if (code) {
         // 2. AQUÍ DEFINIMOS completeFn
-        // 'completeMission' debe coincidir exactamente con el nombre en functions/src/missions.ts
-        const completeFn = httpsCallable(this.functions, 'completeMission',{ timeout: 10000 });
+        // 'syncMissionProgress' debe coincidir exactamente con el nombre en functions/src/missions.ts
+        const completeFn = httpsCallable(this.functions, 'syncMissionProgress',{ timeout: 10000 });
         
         try {
           // 3. Ejecutamos la función pasando los parámetros
