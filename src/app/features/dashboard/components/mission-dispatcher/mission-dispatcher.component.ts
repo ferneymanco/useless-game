@@ -60,18 +60,19 @@ nextLevelValue = 1;
       if (code) {
         // 2. AQUÍ DEFINIMOS completeFn
         // 'completeMission' debe coincidir exactamente con el nombre en functions/src/missions.ts
-        const completeFn = httpsCallable(this.functions, 'completeMission');
+        const completeFn = httpsCallable(this.functions, 'completeMission',{ timeout: 10000 });
         
         try {
           // 3. Ejecutamos la función pasando los parámetros
           const result: any = await completeFn({ 
             missionId: mission.id, 
-            inputCode: code 
+            inputCode: code,
+            _t: Date.now()
           });
 
           if (result.data.success) {
             // Si hubo Level Up, disparamos el efecto que creamos antes
-            console.log('LEVEL UP:',result.data);
+            console.log('LEVEL UP:',result);
             if (result.data.leveledUp) {
               this.triggerLevelUp(result.data.nextLevel);
             } else {

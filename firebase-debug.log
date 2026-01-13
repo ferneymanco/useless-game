@@ -1,19 +1,65 @@
-[debug] [2026-01-13T16:06:55.125Z] ----------------------------------------------------------------------
-[debug] [2026-01-13T16:06:55.136Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Fmanco\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
-[debug] [2026-01-13T16:06:55.136Z] CLI Version:   14.11.2
-[debug] [2026-01-13T16:06:55.136Z] Platform:      win32
-[debug] [2026-01-13T16:06:55.137Z] Node Version:  v22.18.0
-[debug] [2026-01-13T16:06:55.137Z] Time:          Tue Jan 13 2026 11:06:55 GMT-0500 (hora estándar de Colombia)
-[debug] [2026-01-13T16:06:55.137Z] ----------------------------------------------------------------------
+[debug] [2026-01-13T16:59:06.693Z] ----------------------------------------------------------------------
+[debug] [2026-01-13T16:59:06.705Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Fmanco\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2026-01-13T16:59:06.705Z] CLI Version:   14.11.2
+[debug] [2026-01-13T16:59:06.706Z] Platform:      win32
+[debug] [2026-01-13T16:59:06.706Z] Node Version:  v22.18.0
+[debug] [2026-01-13T16:59:06.706Z] Time:          Tue Jan 13 2026 11:59:06 GMT-0500 (hora estándar de Colombia)
+[debug] [2026-01-13T16:59:06.706Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2026-01-13T16:06:55.334Z] Object "/apphosting" in "firebase.json" is missing required property: {"missingProperty":"backendId"}
-[debug] [2026-01-13T16:06:55.334Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be array
-[debug] [2026-01-13T16:06:55.334Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
-[debug] [2026-01-13T16:06:55.638Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2026-01-13T16:06:55.638Z] > authorizing via signed-in user (ferneymanco@gmail.com)
-[debug] [2026-01-13T16:06:55.639Z] [iam] checking project useless-game for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
-[debug] [2026-01-13T16:06:55.641Z] Checked if tokens are valid: true, expires at: 1768322891999
-[debug] [2026-01-13T16:06:55.641Z] Checked if tokens are valid: true, expires at: 1768322891999
-[debug] [2026-01-13T16:06:55.643Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions [none]
-[debug] [2026-01-13T16:06:55.643Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions x-goog-quota-user=projects/useless-game
-[debug] [2026-01-13T16:06:55.643Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-01-13T16:59:06.911Z] Object "/apphosting" in "firebase.json" is missing required property: {"missingProperty":"backendId"}
+[debug] [2026-01-13T16:59:06.911Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be array
+[debug] [2026-01-13T16:59:06.911Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2026-01-13T16:59:06.928Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-13T16:59:06.928Z] > authorizing via signed-in user (ferneymanco@gmail.com)
+[debug] [2026-01-13T16:59:06.928Z] [iam] checking project useless-game for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-01-13T16:59:06.929Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:06.930Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:06.930Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions [none]
+[debug] [2026-01-13T16:59:06.931Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions x-goog-quota-user=projects/useless-game
+[debug] [2026-01-13T16:59:06.931Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-01-13T16:59:07.631Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions 200
+[debug] [2026-01-13T16:59:07.631Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-01-13T16:59:07.632Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:07.632Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:07.632Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-01-13T16:59:07.632Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-01-13T16:59:08.168Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-01-13T16:59:08.168Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'useless-game'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-01-13T16:59:08.172Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:08.172Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:08.172Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/useless-game [none]
+[debug] [2026-01-13T16:59:08.325Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/useless-game 200
+[debug] [2026-01-13T16:59:08.325Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/useless-game {"projectNumber":"1006930966019","projectId":"useless-game","lifecycleState":"ACTIVE","name":"useless-game","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-08-04T22:22:35.582255Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-01-13T16:59:08.327Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:08.327Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:08.327Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/useless-game/adminSdkConfig [none]
+[debug] [2026-01-13T16:59:08.837Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/useless-game/adminSdkConfig 200
+[debug] [2026-01-13T16:59:08.837Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/useless-game/adminSdkConfig {"projectId":"useless-game","databaseURL":"https://useless-game-default-rtdb.firebaseio.com","storageBucket":"useless-game.firebasestorage.app"}
+[debug] [2026-01-13T16:59:08.838Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:08.838Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:08.838Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs [none]
+[debug] [2026-01-13T16:59:09.316Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs 200
+[debug] [2026-01-13T16:59:09.316Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs {"configs":[{"name":"projects/useless-game/configs/paypal"}]}
+[debug] [2026-01-13T16:59:09.317Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:09.317Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:09.317Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables [none]
+[debug] [2026-01-13T16:59:09.641Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables 200
+[debug] [2026-01-13T16:59:09.641Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables {"variables":[{"name":"projects/useless-game/configs/paypal/variables/client_id","updateTime":"2026-01-09T19:33:27.347229987Z"},{"name":"projects/useless-game/configs/paypal/variables/secret","updateTime":"2026-01-09T19:33:28.201655239Z"}]}
+[debug] [2026-01-13T16:59:09.642Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:09.642Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:09.642Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:09.642Z] Checked if tokens are valid: true, expires at: 1768326443278
+[debug] [2026-01-13T16:59:09.642Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables/client_id [none]
+[debug] [2026-01-13T16:59:09.644Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables/secret [none]
+[debug] [2026-01-13T16:59:09.964Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables/client_id 200
+[debug] [2026-01-13T16:59:09.965Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables/client_id {"name":"projects/useless-game/configs/paypal/variables/client_id","updateTime":"2026-01-09T19:33:27.347229987Z","text":"AXCYe8gb5ANwrLQNY5r_b"}
+[debug] [2026-01-13T16:59:10.031Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables/secret 200
+[debug] [2026-01-13T16:59:10.031Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/useless-game/configs/paypal/variables/secret {"name":"projects/useless-game/configs/paypal/variables/secret","updateTime":"2026-01-09T19:33:28.201655239Z","text":"EMXaO4-AJ6YhNxh0HQ9PWpw70_QEMDsPOkwYX96-1vQxjMOQ0PeNHcflmP1ixHPdBcd3IyeyfmLKMfpD"}

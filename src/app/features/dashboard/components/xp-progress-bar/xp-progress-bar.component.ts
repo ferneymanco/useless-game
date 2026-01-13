@@ -9,7 +9,7 @@ import { PlayerService } from '../../../../core/services/player.service';
   template: `
     <div class="xp-system">
       <div class="xp-header">
-        <span>CORE LEVEL: {{ currentLevel() }}</span>
+        <span>> CORE LEVEL: {{ currentLevel() }}</span>
         <span>{{ currentXp() }} / {{ nextLevelXp() }} XP</span>
       </div>
       <div class="progress-track">

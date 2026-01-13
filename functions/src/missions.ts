@@ -26,10 +26,6 @@ export const completeMission = functions.https.onCall(async (data, context) => {
     return { success: false, message: 'PROTOCOL_ALREADY_SYNCED' };
   }
 
-  if (missionData?.objectiveCode === inputCode) {// functions/src/missions.ts
-
-// ... (inicio igual) ...
-
   if (missionData?.objectiveCode === inputCode) {
     const xpReward = Number(missionData?.xpReward);
     const currentXp = Number(userData?.experience || 0);
@@ -79,7 +75,6 @@ export const completeMission = functions.https.onCall(async (data, context) => {
     console.log("Enviando respuesta:", finalResponse);
     
     return finalResponse;
-  }
   }
   return { success: false, message: 'INVALID_CODE' };
 });
