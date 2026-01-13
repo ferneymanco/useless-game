@@ -54,7 +54,7 @@ export const completeMission = functions.https.onCall(async (data, context) => {
     // (Aquí va el código de los logs que pusimos antes...)
 
     await batch.commit();
-    return { success: true, newXp: xpReward, leveledUp, nextLevel: finalLevel };
+    return { success: true, newXp: xpReward, leveledUp: leveledUp, nextLevel: finalLevel };
   }
   return { success: false, message: 'INVALID_CODE' };
 });
