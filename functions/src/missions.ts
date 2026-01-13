@@ -69,14 +69,16 @@ export const completeMission = functions.https.onCall(async (data, context) => {
     await batch.commit();
 
     // RETORNO EXPLÍCITO
-    const response = { 
+    const finalResponse = { 
       success: true, 
-      newXp: xpReward, 
-      leveledUp: !!leveledUp, // Forzamos booleano
-      nextLevel: finalLevel 
+      newXp: Number(xpReward), 
+      leveledUp: Boolean(leveledUp), // Forzamos booleano
+      nextLevel: Number(finalLevel),
+      debugInfo: "v2-deployed"
     };
+    console.log("Enviando respuesta:", finalResponse);
     
-    return response;
+    return finalResponse;
   }
   }
   return { success: false, message: 'INVALID_CODE' };

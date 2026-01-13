@@ -1,0 +1,19 @@
+[debug] [2026-01-13T16:06:55.125Z] ----------------------------------------------------------------------
+[debug] [2026-01-13T16:06:55.136Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Fmanco\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2026-01-13T16:06:55.136Z] CLI Version:   14.11.2
+[debug] [2026-01-13T16:06:55.136Z] Platform:      win32
+[debug] [2026-01-13T16:06:55.137Z] Node Version:  v22.18.0
+[debug] [2026-01-13T16:06:55.137Z] Time:          Tue Jan 13 2026 11:06:55 GMT-0500 (hora estándar de Colombia)
+[debug] [2026-01-13T16:06:55.137Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-01-13T16:06:55.334Z] Object "/apphosting" in "firebase.json" is missing required property: {"missingProperty":"backendId"}
+[debug] [2026-01-13T16:06:55.334Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be array
+[debug] [2026-01-13T16:06:55.334Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2026-01-13T16:06:55.638Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-13T16:06:55.638Z] > authorizing via signed-in user (ferneymanco@gmail.com)
+[debug] [2026-01-13T16:06:55.639Z] [iam] checking project useless-game for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-01-13T16:06:55.641Z] Checked if tokens are valid: true, expires at: 1768322891999
+[debug] [2026-01-13T16:06:55.641Z] Checked if tokens are valid: true, expires at: 1768322891999
+[debug] [2026-01-13T16:06:55.643Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions [none]
+[debug] [2026-01-13T16:06:55.643Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions x-goog-quota-user=projects/useless-game
+[debug] [2026-01-13T16:06:55.643Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
