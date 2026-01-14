@@ -13,4 +13,6 @@ export interface PlayerProfile {
   donorLevel: string; // e.g., 'recruit'
   paymentId?: string; // Para auditoría
   completedMissions: string[]; // Array de IDs de misiones completadas
+  decryptedNodes?: number; // Nodos descifrados
+  currentBadge?: string; // Badge equipado
 }

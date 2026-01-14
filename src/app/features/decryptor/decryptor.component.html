@@ -1,1 +1,93 @@
-<p>decryptor works!</p>
+<div class="decryptor-container" *ngIf="gameStatus() !== 'blocked'">
+  <div class="aethelgard-card scanner-frame" [class.shake-effect]="isShaking()">
+    <div class="header">
+      <mat-icon>psychology</mat-icon>
+      <h2>DECRYPTOR CORE <span class="version">v1.0.4</span></h2>
+    </div>
+
+    <div class="status-bar">
+      <span class="status-text" [class.active]="isDecrypting">
+        {{ isDecrypting ? 'SCANNING NODE...' : 'READY TO INITIALIZE' }}
+      </span>
+      <span class="target-id">TARGET: SIGNAL_NODE_X</span>
+    </div>
+
+    <div class="matrix-display">
+      <div *ngFor="let digit of currentSequence(); let i = index" class="slot-container">
+        <div class="target-hint">{{ targetNumbers()[i] }}</div>
+        
+        <div class="digit-box" [class.locked]="lockedDigits()[i]" [class.mismatch]="!lockedDigits()[i]">
+          {{ digit }}
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button *ngIf="!isDecrypting" (click)="startDecryption()" class="btn-action">
+        INITIALIZE BRUTE FORCE
+      </button>
+      
+      <button *ngIf="isDecrypting" (click)="lockCurrentDigit()" class="btn-lock">
+        SYNC SIGNAL
+      </button>
+    </div>
+
+    <div *ngIf="gameStatus() === 'success'" class="result success">
+      <mat-icon>check_circle</mat-icon>
+      <p>SIGNAL DECRYPTED. REWARD: 50 XP & 1 ACCESS_TOKEN</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="gameStatus() === 'fail'" class="result error">
+  <mat-icon>report_problem</mat-icon>
+  <p>COOLDOWN ACTIVE: CORE RECHARGING...</p>
+</div>
+<div class="stability-container">
+  <div class="stability-label">CORE STABILITY: {{ currentSpeed() }}ms</div>
+  <div class="stability-bar">
+    <div class="stability-fill" [style.width.%]="(currentSpeed() / 150) * 100"></div>
+  </div>
+</div>
+
+<!-- <div *ngIf="gameStatus() === 'blocked'" class="result critical">
+  <mat-icon>security_update_warning</mat-icon>
+  <h3>SYSTEM OVERHEAT: SESSION TERMINATED</h3>
+  <p>El núcleo de seguridad ha detectado demasiadas anomalías. Acceso bloqueado.</p>
+  <button (click)="gameStatus.set('idle')" class="btn-retry">REBOOT SYSTEM</button>
+</div> -->
+
+<div *ngIf="gameStatus() === 'blocked'" class="terminal-reboot">
+  <div class="critical-header">
+    <mat-icon>terminal</mat-icon>
+    <h3>EMERGENCY REBOOT REQUIRED</h3>
+  </div>
+  
+  <p class="warning-text">Core temperature exceeded. Manual override needed.</p>
+  
+  <div class="command-box">
+    <label>ENTER SEQUENCE: <code>{{ rebootCode() }}</code></label>
+    <input 
+      type="text" 
+      [value]="userRebootInput()"
+      (input)="checkRebootCommand($event)"
+      placeholder="Type command..."
+      class="reboot-input"
+      autofocus
+    />
+  </div>
+
+  <div class="system-logs">
+    <p>> CPU_OVERHEAT_DETECTED</p>
+    <p>> COOLING_SYSTEM_OFFLINE</p>
+    <p>> WAITING_FOR_OPERATOR_COMMAND...</p>
+  </div>
+</div>
+
+<div *ngIf="gameStatus() === 'success'" class="result success">
+  <div class="success-content" [class.perfect-glow]="!hadFailures()">
+    <mat-icon>{{ !hadFailures() ? 'military_tech' : 'check_circle' }}</mat-icon>
+    <h3>{{ !hadFailures() ? 'PERFECT SYNC DETECTED' : 'SIGNAL DECRYPTED' }}</h3>
+    <p>{{ !hadFailures() ? 'REWARD: 100 XP (x2 MULTIPLIER)' : 'REWARD: 50 XP' }}</p>
+  </div>
+</div>

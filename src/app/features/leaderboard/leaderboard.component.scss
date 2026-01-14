@@ -1,0 +1,37 @@
+.leaderboard-frame { max-width: 800px; margin: 40px auto; padding: 30px; }
+    .header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; color: var(--aethelgard-amber); }
+    
+    .table-container { background: rgba(0,0,0,0.3); border: 1px solid #333; }
+    .cyber-table { width: 100%; border-collapse: collapse; font-family: 'Courier New', monospace; }
+    
+    th { text-align: left; padding: 15px; background: #111; color: #666; font-size: 0.8rem; }
+    td { padding: 15px; border-bottom: 1px solid #222; }
+
+    .rank-cell { color: var(--aethelgard-amber); font-weight: bold; }
+    .role { font-size: 0.7rem; color: #888; margin-right: 5px; }
+    .is-donor { background: rgba(255, 179, 0, 0.05); }
+    .donor-icon { color: var(--aethelgard-amber); font-size: 18px; }
+    .standard-node { font-size: 0.6rem; color: #444; }
+
+    .loader { padding: 40px; text-align: center; color: var(--aethelgard-amber); letter-spacing: 3px; }
+    .prestige-badge {
+      font-size: 16px;
+      vertical-align: middle;
+      margin-right: 8px;
+      color: #00ffff; /* Cian para agentes de élite */
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    /* Efecto Fantasma para el Badge SPECTRE */
+.badge-spectre {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+  animation: ghost-flicker 3s infinite;
+}
+
+@keyframes ghost-flicker {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  45% { opacity: 0.7; filter: brightness(1.2); }
+  50% { opacity: 0.2; filter: blur(1px); } /* El "glitch" */
+  55% { opacity: 0.9; filter: brightness(0.8); }
+}

@@ -89,26 +89,32 @@ export const processDecryption = functions.https.onCall(async (data, context) =>
 
   // --- LÓGICA DE TIEMPO (COOLDOWN) ---
   const now = Date.now();
-  const lastDecryption = userData?.lastDecryption || 0;
-  const twentyFourHours = 24 * 60 * 60 * 1000;
+  /* const lastDecryption = userData?.lastDecryption || 0;
+  const twentyFourHours = 24 * 60 * 60 * 1000; */
 
-  if (now - lastDecryption < twentyFourHours) {
+  /* if (now - lastDecryption < twentyFourHours) {
     const remaining = Math.ceil((twentyFourHours - (now - lastDecryption)) / (1000 * 60 * 60));
     return { 
       success: false, 
       message: `SYSTEM_RECHARGING: ${remaining} hours remaining.` 
     };
-  }
+  } */
 
   // --- RECOMPENSA ---
-  const xpReward = 50;
-  const newXp = (userData?.experience || 0) + xpReward;
+  const isPerfect = data.isPerfect || false;
+  const baseReward = 50;
+  console.log("IS PERFECT: ", isPerfect); 
+  console.log("BASE REWARD: ", baseReward); 
+  const finalReward = isPerfect ? baseReward * 2 : baseReward;
+  const newXp = (userData?.experience || 0) + finalReward;
+  console.log("NUEVO XP: ", newXp);
 
   await userRef.update({
     experience: newXp,
     lastDecryption: now,
     // Podrías añadir un contador de "nodos descifrados"
-    decryptedNodes: admin.firestore.FieldValue.increment(1)
+    decryptedNodes: admin.firestore.FieldValue.increment(1),
+    perfectDecryptions: admin.firestore.FieldValue.increment(isPerfect ? 1 : 0)
   });
 
   return { 
@@ -116,4 +122,48 @@ export const processDecryption = functions.https.onCall(async (data, context) =>
     newXp: newXp,
     message: 'SIGNAL_DECRYPTED_SUCCESSFULLY' 
   };
+});
+
+// functions/src/index.ts (No olvides exportarla)
+export const getGlobalLeaderboard = functions.https.onCall(async (data, context) => {
+  if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Acceso denegado.');
+
+  const snapshot = await admin.firestore()
+    .collection('players')
+    .orderBy('accessLevel', 'desc')
+    .orderBy('experience', 'desc')
+    .limit(10)
+    .get();
+
+  const leaderboard = snapshot.docs.map(doc => {
+    const d = doc.data();
+    return {
+      labelId: d.labelId,
+      role: d.role,
+      level: d.accessLevel,
+      xp: d.experience,
+      isDonor: d.isDonor || false,
+      badge: d.currentBadge || 'OPERATIVE'
+    };
+  });
+
+  return { success: true, leaderboard };
+});
+
+export const claimBadge = functions.https.onCall(async (data, context) => {
+  if (!context.auth) throw new functions.https.HttpsError('unauthenticated', '...');
+
+  const { badgeId } = data; // Ej: 'SPECTRE'
+  const userId = context.auth.uid;
+  const userRef = admin.firestore().collection('players').doc(userId);
+  const userSnap = await userRef.get();
+  const userData = userSnap.data();
+
+  // Validación de nivel para el badge 'SPECTRE' (Nivel 3)
+  if (badgeId === 'SPECTRE' && (userData?.accessLevel || 0) < 3) {
+    throw new functions.https.HttpsError('failed-precondition', 'Nivel insuficiente.');
+  }
+
+  await userRef.update({ currentBadge: badgeId });
+  return { success: true, badge: badgeId };
 });

@@ -8,6 +8,7 @@ import { EliteGuard } from './core/guards/elite.guard';
 import { MissionDispatcherComponent } from './features/dashboard/components/mission-dispatcher/mission-dispatcher.component';
 import { DecryptorComponent } from './features/decryptor/decryptor.component';
 import { levelGuard } from './core/guards/level.guard';
+import { LeaderboardComponent } from './features/leaderboard/leaderboard.component';
 
 export const routes: Routes = [
   { path: 'test', component: AptitudeTestComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
     component: DecryptorComponent,
     canActivate: [levelGuard(2)]
   },
+  { path: 'leaderboard', component: LeaderboardComponent, /* canActivate: [levelGuard(3)]  */},
   //{ path: '', redirectTo: '/test', pathMatch: 'full' }
 ];

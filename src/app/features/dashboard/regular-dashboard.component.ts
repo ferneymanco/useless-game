@@ -6,6 +6,7 @@ import { XpProgressBarComponent } from './components/xp-progress-bar/xp-progress
 import { MissionDispatcherComponent } from './components/mission-dispatcher/mission-dispatcher.component';
 import { ActivityLogComponent } from './components/activity-log/activity-log.component';
 import { MatIcon } from "@angular/material/icon";
+import { Functions, httpsCallable } from '@angular/fire/functions';  
 
 @Component({
   selector: 'app-regular-dashboard',
@@ -74,6 +75,19 @@ import { MatIcon } from "@angular/material/icon";
 
         <app-activity-log></app-activity-log>
       </aside>
+
+      <div *ngIf="p.accessLevel >= 3" class="badge-selector">
+        <p class="selector-title">SELECT PRESTIGE BADGE</p>
+        <div class="badge-options">
+          <button (click)="equipBadge('OPERATIVE')" [class.active]="player()?.currentBadge === 'OPERATIVE'">
+            <mat-icon>shield</mat-icon>
+          </button>
+          <button (click)="equipBadge('SPECTRE')" [class.active]="player()?.currentBadge === 'SPECTRE'">
+            <mat-icon>visibility_off</mat-icon>
+          </button>
+        </div>
+      </div>
+
     </div>
 
     <ng-template #noProfile>
@@ -164,6 +178,7 @@ import { MatIcon } from "@angular/material/icon";
 export class RegularDashboardComponent {
   playerService = inject(PlayerService);
   router = inject(Router);
+  functions = inject(Functions);
 
   // Signals
   player = this.playerService.player;
@@ -174,5 +189,18 @@ export class RegularDashboardComponent {
 
   onDonate() {
     this.router.navigate(['/donate']);
+  }
+
+  async equipBadge(badgeId: string) {
+    const claimFn = httpsCallable(this.functions, 'claimBadge');
+    try {
+      console.log("Equipando insignia: ", badgeId);
+      await claimFn({ badgeId }).then((result) => {
+        console.log("Insignia equipada: ", result.data);
+      });
+      // El Signal del playerService se actualizará solo si tienes el listener de Firestore
+    } catch (e) {
+      console.error("Error al equipar insignia");
+    }
   }
 }

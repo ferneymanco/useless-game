@@ -1,0 +1,42 @@
+<div class="leaderboard-frame aethelgard-card">
+      <div class="header">
+        <mat-icon>leaderboard</mat-icon>
+        <h2>GLOBAL AGENT RANKING</h2>
+      </div>
+
+      <div class="table-container">
+        <table class="cyber-table">
+          <thead>
+            <tr>
+              <th>RANK</th>
+              <th>OPERATIVE</th>
+              <th>LVL</th>
+              <th>XP</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let agent of agents(); let i = index" [class.is-donor]="agent.isDonor">
+              <td class="rank-cell">#{{ i + 1 }}</td>
+              <td class="id-cell">
+                <mat-icon class="prestige-badge" *ngIf="agent.badge === 'SPECTRE'">visibility_off</mat-icon>
+                <mat-icon class="prestige-badge" *ngIf="agent.badge === 'OPERATIVE'">shield</mat-icon>
+                
+                <span class="role">[{{ agent.role }}]</span>
+                {{ agent.labelId }}
+              </td>
+              <td class="level-cell">{{ agent.level }}</td>
+              <td class="xp-cell">{{ agent.xp | number }}</td>
+              <td>
+                <mat-icon *ngIf="agent.isDonor" class="donor-icon">verified</mat-icon>
+                <span *ngIf="!agent.isDonor" class="standard-node">NODE</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div *ngIf="loading()" class="loader">
+          SCANNING NETWORK...
+        </div>
+      </div>
+    </div>
