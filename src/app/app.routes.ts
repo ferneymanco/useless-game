@@ -9,6 +9,7 @@ import { MissionDispatcherComponent } from './features/dashboard/components/miss
 import { DecryptorComponent } from './features/decryptor/decryptor.component';
 import { levelGuard } from './core/guards/level.guard';
 import { LeaderboardComponent } from './features/leaderboard/leaderboard.component';
+import { InventoryComponent } from './features/inventory/inventory.component';
 
 export const routes: Routes = [
   { path: 'test', component: AptitudeTestComponent },
@@ -27,5 +28,6 @@ export const routes: Routes = [
     canActivate: [levelGuard(2)]
   },
   { path: 'leaderboard', component: LeaderboardComponent, /* canActivate: [levelGuard(3)]  */},
+  { path: 'inventory', component: InventoryComponent, /* canActivate: [levelGuard(2)] */ },
   //{ path: '', redirectTo: '/test', pathMatch: 'full' }
 ];

@@ -86,6 +86,8 @@ export const processDecryption = functions.https.onCall(async (data, context) =>
   const userRef = admin.firestore().collection('players').doc(userId);
   const userSnap = await userRef.get();
   const userData = userSnap.data();
+  const lootChance = Math.random();
+  let lootMessage = "";
 
   // --- LÓGICA DE TIEMPO (COOLDOWN) ---
   const now = Date.now();
@@ -117,11 +119,23 @@ export const processDecryption = functions.https.onCall(async (data, context) =>
     perfectDecryptions: admin.firestore.FieldValue.increment(isPerfect ? 1 : 0)
   });
 
-  return { 
+  if (lootChance > 0.8) { // 20% de probabilidad de encontrar algo
+    const itemRef = userRef.collection('inventory').doc('signal_fragment');
+    await itemRef.set({
+      name: 'Fragmento de Señal',
+      quantity: admin.firestore.FieldValue.increment(1),
+      rarity: 'COMMON',
+      icon: 'memory'
+    }, { merge: true });
+    lootMessage = "ITEM_ACQUIRED: SIGNAL_FRAGMENT";
+    
+  }
+  return { success: true, newXp, message: lootMessage };
+  /* return { 
     success: true, 
     newXp: newXp,
     message: 'SIGNAL_DECRYPTED_SUCCESSFULLY' 
-  };
+  }; */
 });
 
 // functions/src/index.ts (No olvides exportarla)
