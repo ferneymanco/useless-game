@@ -1,0 +1,36 @@
+<div class="workshop-container">
+  <div class="header">
+    <mat-icon>build</mat-icon>
+    <h2>NEURAL ASSEMBLY UNIT</h2>
+  </div>
+
+  <div class="recipe-list">
+    @for (recipe of enrichedRecipes(); track recipe.id) {
+      <div class="recipe-card" [class.locked]="!recipe.canCraft">
+        <div class="recipe-result">
+          <mat-icon class="result-icon">{{ recipe.resultIcon }}</mat-icon>
+          <div class="result-meta">
+            <span class="name">{{ recipe.resultName }}</span>
+            <span class="type">OUTPUT UNIT</span>
+          </div>
+        </div>
+
+        <div class="ingredients-list">
+          @for (ing of recipe.ingredientsStatus; track ing.id) {
+            <div class="ing-item" [class.insufficient]="!ing.hasEnough">
+              <span class="ing-name">{{ ing.name }}</span>
+              <span class="ing-qty">{{ ing.owned }}/{{ ing.required }}</span>
+            </div>
+          }
+        </div>
+
+        <button 
+          (click)="onCraft(recipe.id)" 
+          [disabled]="!recipe.canCraft || isCrafting()"
+          class="btn-craft">
+          {{ isCrafting() === recipe.id ? 'ASSEMBLING...' : 'INITIALIZE CRAFT' }}
+        </button>
+      </div>
+    }
+  </div>
+</div>

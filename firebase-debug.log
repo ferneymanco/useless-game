@@ -1,0 +1,48 @@
+[debug] [2026-01-15T00:19:07.263Z] ----------------------------------------------------------------------
+[debug] [2026-01-15T00:19:07.269Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Fmanco\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2026-01-15T00:19:07.270Z] CLI Version:   14.11.2
+[debug] [2026-01-15T00:19:07.270Z] Platform:      win32
+[debug] [2026-01-15T00:19:07.270Z] Node Version:  v22.18.0
+[debug] [2026-01-15T00:19:07.270Z] Time:          Wed Jan 14 2026 19:19:07 GMT-0500 (hora estándar de Colombia)
+[debug] [2026-01-15T00:19:07.270Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-01-15T00:19:07.492Z] Object "/apphosting" in "firebase.json" is missing required property: {"missingProperty":"backendId"}
+[debug] [2026-01-15T00:19:07.493Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be array
+[debug] [2026-01-15T00:19:07.493Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2026-01-15T00:19:07.496Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-15T00:19:07.496Z] > authorizing via signed-in user (ferneymanco@gmail.com)
+[debug] [2026-01-15T00:19:07.496Z] [iam] checking project useless-game for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-01-15T00:19:07.498Z] Checked if tokens are valid: false, expires at: 1768436672462
+[debug] [2026-01-15T00:19:07.498Z] Checked if tokens are valid: false, expires at: 1768436672462
+[debug] [2026-01-15T00:19:07.498Z] > refreshing access token with scopes: []
+[debug] [2026-01-15T00:19:07.500Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-15T00:19:07.500Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-15T00:19:07.925Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-01-15T00:19:07.925Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-15T00:19:07.942Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions [none]
+[debug] [2026-01-15T00:19:07.942Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions x-goog-quota-user=projects/useless-game
+[debug] [2026-01-15T00:19:07.942Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-01-15T00:19:08.449Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions 200
+[debug] [2026-01-15T00:19:08.450Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/useless-game:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-01-15T00:19:08.450Z] Checked if tokens are valid: true, expires at: 1768439946925
+[debug] [2026-01-15T00:19:08.450Z] Checked if tokens are valid: true, expires at: 1768439946925
+[debug] [2026-01-15T00:19:08.450Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-01-15T00:19:08.450Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-01-15T00:19:08.960Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-01-15T00:19:08.960Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/useless-game/serviceAccounts/useless-game@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'useless-game'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-01-15T00:19:08.964Z] Checked if tokens are valid: true, expires at: 1768439946925
+[debug] [2026-01-15T00:19:08.964Z] Checked if tokens are valid: true, expires at: 1768439946925
+[debug] [2026-01-15T00:19:08.964Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/useless-game [none]
+[debug] [2026-01-15T00:19:09.129Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/useless-game 200
+[debug] [2026-01-15T00:19:09.129Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/useless-game {"projectNumber":"1006930966019","projectId":"useless-game","lifecycleState":"ACTIVE","name":"useless-game","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-08-04T22:22:35.582255Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-01-15T00:19:09.132Z] Checked if tokens are valid: true, expires at: 1768439946925
+[debug] [2026-01-15T00:19:09.132Z] Checked if tokens are valid: true, expires at: 1768439946925
+[debug] [2026-01-15T00:19:09.133Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/useless-game/adminSdkConfig [none]
