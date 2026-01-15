@@ -1,0 +1,37 @@
+<div class="inventory-screen">
+      <div class="header">
+        <mat-icon>inventory_2</mat-icon>
+        <h2>SECURE STORAGE / VAULT</h2>
+      </div>
+
+      <div class="items-grid">
+        @for (item of inventory(); track item.id) {
+        
+        <div class="item-card" [attr.data-rarity]="item.rarity">
+            <div class="quantity-badge">{{ item.quantity }}</div>
+            <mat-icon class="item-icon">{{ item.icon }}</mat-icon>
+            <div class="item-info">
+              <span class="item-name">{{ item.name }}</span>
+              <span class="item-category">{{ item.category }}</span>
+            </div>
+            <div class="item-description">{{ item.description }}</div>
+            <div class="item-actions" *ngIf="item.isUsable">
+                <button 
+                (click)="useItem(item)" 
+                [disabled]="loadingItem() === item.id"
+                class="btn-use">
+                {{ loadingItem() === item.id ? 'PROCESSING...' : 'USE ITEM' }}
+                </button>
+            </div>
+
+            <div class="item-description">{{ item.description }}</div>
+          </div>
+
+        } @empty {
+          <div class="empty-vault">
+            <p>VAULT EMPTY. COMPLETE MISSIONS TO GATHER RESOURCES.</p>
+          </div>
+        }
+      </div>
+    </div>
+

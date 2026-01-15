@@ -1,11 +1,18 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, addDoc, doc, updateDoc } from '@angular/fire/firestore';
 import { PlayerService } from './player.service';
+import { InventoryService } from './inventory.service';
 
 @Injectable({ providedIn: 'root' })
 export class AdminService {
   private firestore = inject(Firestore);
   private playerService = inject(PlayerService);
+  private inventoryService = inject(InventoryService);
+
+  async seedSampleItems(){
+    this.inventoryService.seedGlobalCatalog();
+    alert('Sample items injected!');
+  }
 
   // Inyectar misiones de prueba
   async seedSampleMissions() {

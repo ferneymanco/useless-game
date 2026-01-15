@@ -181,3 +181,33 @@ export const claimBadge = functions.https.onCall(async (data, context) => {
   await userRef.update({ currentBadge: badgeId });
   return { success: true, badge: badgeId };
 });
+
+export const consumeItem = functions.https.onCall(async (data, context) => {
+  const { itemId } = data;
+  const userId = context.auth?.uid;
+  if (!userId) throw new functions.https.HttpsError('unauthenticated', '...');
+
+  const itemRef = admin.firestore().collection('players').doc(userId).collection('inventory').doc(itemId);
+  const itemSnap = await itemRef.get();
+
+  if (!itemSnap.exists || itemSnap.data()?.quantity <= 0) {
+    throw new functions.https.HttpsError('not-found', 'Item agotado.');
+  }
+
+  // 1. Restar cantidad
+  await itemRef.update({
+    quantity: admin.firestore.FieldValue.increment(-1)
+  });
+
+  // 2. Lógica de efecto (Ejemplo: Revelar una pista secreta)
+  let intel = "No se encontró información adicional.";
+  if (itemId === 'signal_fragment') {
+    intel = "LA CONTRASEÑA DEL NÚCLEO COMIENZA CON 'AETH_'.";
+  }
+
+  return { 
+    success: true, 
+    message: "Objeto procesado correctamente.",
+    intel: intel 
+  };
+});

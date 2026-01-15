@@ -60,17 +60,30 @@ export class PlayerService {
   }
 
   async upgradeToDonor(orderId: string) {
-  const p = this.player();
-  if (p) {
-    const userDoc = doc(this.firestore, `players/${p.uid}`);
-    await updateDoc(userDoc, {
-      isDonor: true,
-      accessLevel: 2,
-      paymentId: orderId,
-      donorLevel: 'recruit'
-    });
+    const p = this.player();
+    if (p) {
+      const userDoc = doc(this.firestore, `players/${p.uid}`);
+      await updateDoc(userDoc, {
+        isDonor: true,
+        accessLevel: 2,
+        paymentId: orderId,
+        donorLevel: 'recruit'
+      });
+    }
   }
-}
+
+  /* getCompleteInventory() {
+    const playerItems = this.getInventoryFromUser(); // Lo que tiene el usuario (ID + Cantidad)
+    const globalCatalog = this.getGlobalItems();      // El catálogo (Nombre + Icono)
+
+    return playerItems.map(pItem => {
+      const details = globalCatalog.find(g => g.id === pItem.id);
+      return {
+        ...pItem,
+        ...details // Combinamos la cantidad del usuario con los visuales globales
+      };
+    });
+  } */
 
   logout() {
     signOut(this.auth);
