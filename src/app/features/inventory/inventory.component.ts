@@ -43,4 +43,25 @@ export class InventoryComponent {
       this.loadingItem.set(null);
     }
   }
+
+  async onDismantle(itemId: string) {
+    if (!confirm('¿Deseas desmantelar este residuo? Se perderá el objeto original.')) return;
+
+    const dismantleFn = httpsCallable(this.functions, 'dismantleItem');
+    
+    try {
+      const result: any = await dismantleFn({ itemId });
+      if (result.data.success) {
+        // Notificación de éxito con los materiales
+        const report = result.data.recovered
+          .map((m: any) => `${m.qty}x ${m.id.replace('_', ' ')}`)
+          .join(', ');
+          
+        alert(`SISTEMA: Recuperación completada. Materiales obtenidos: ${report}`);
+      }
+    } catch (error) {
+      console.error("Error en el desmantelamiento", error);
+    }
+  }
+
 }

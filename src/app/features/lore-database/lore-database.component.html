@@ -1,0 +1,43 @@
+<div class="archive-container">
+  <aside class="file-explorer">
+    <div class="explorer-header">
+      <mat-icon>folder_special</mat-icon>
+      <span>RECOVERED_INTEL</span>
+    </div>
+    
+    <ul class="file-list">
+      <li *ngFor="let entry of loreService.unlockedEntries()" 
+          (click)="selectFile(entry)"
+          [class.active]="selectedEntry()?.id === entry.id">
+        <mat-icon>description</mat-icon>
+        <span class="file-name">{{ entry.id.toUpperCase() }}.log</span>
+      </li>
+      
+      <li class="file-locked" *ngIf="loreService.unlockedEntries().length < 5">
+        <mat-icon>lock</mat-icon>
+        <span class="file-name">ENCRYPTED_DATA_???</span>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="file-viewer">
+    <div *ngIf="selectedEntry(); else emptyState" class="content-view">
+      <div class="viewer-header">
+        <h2>SOURCE: {{ selectedEntry().sender }}</h2>
+        <span class="timestamp">DECRYPTED_ON: {{ getCurrentDate() | date:'short' }}</span>
+      </div>
+      <div class="viewer-body">
+        <p *ngFor="let paragraph of selectedEntry().text">
+          > {{ paragraph }}
+        </p>
+      </div>
+    </div>
+    
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <mat-icon>terminal</mat-icon>
+        <p>SELECT A FILE TO INITIALIZE DECRYPTION VIEW</p>
+      </div>
+    </ng-template>
+  </main>
+</div>

@@ -85,3 +85,25 @@
   /* Los iconos legendarios brillan */
   &.LEGENDARY { color: #FFB300; filter: drop-shadow(0 0 5px #FFB300); }
 }
+
+.btn-dismantle {
+  margin-top: 10px;
+  background: rgba(255, 0, 85, 0.1);
+  border: 1px solid #ff0055;
+  color: #ff0055;
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  padding: 8px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn-dismantle:hover {
+  background: #ff0055;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
+}

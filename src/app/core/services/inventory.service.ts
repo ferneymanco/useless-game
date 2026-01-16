@@ -60,7 +60,7 @@ export class InventoryService {
 
 async seedGlobalCatalog() {
   const items = [
-    // COMMON (Gris/Básico)
+    /* // COMMON (Gris/Básico)
     { id: 'signal_fragment', name: 'Fragmento de Señal', description: 'Datos ruidosos recuperados de la red. Útiles para reconstruir mensajes.', icon: 'settings_input_antenna', rarity: 'COMMON', category: 'INTEL', isUsable: true },
     { id: 'damaged_ram', name: 'Módulo RAM Dañado', description: 'Hardware básico que aún conserva trazas de memoria volátil.', icon: 'memory', rarity: 'COMMON', category: 'HARDWARE', isUsable: false },
     { id: 'encrypted_log', name: 'Registro Cifrado', description: 'Un archivo .log protegido. Parece contener bitácoras de un técnico.', icon: 'description', rarity: 'COMMON', category: 'INTEL', isUsable: true },
@@ -76,7 +76,8 @@ async seedGlobalCatalog() {
 
     // LEGENDARY (Oro/Aethelgard Amber)
     { id: 'master_keycard', name: 'Tarjeta Maestra Aethelgard', description: 'Acceso físico a los servidores centrales del bastión.', icon: 'vibration', rarity: 'LEGENDARY', category: 'HARDWARE', isUsable: false },
-    { id: 'architect_code', name: 'Código del Arquitecto', description: 'Un fragmento del kernel original de la red. Poder absoluto.', icon: 'auto_awesome', rarity: 'LEGENDARY', category: 'SOFTWARE', isUsable: true }
+    { id: 'architect_code', name: 'Código del Arquitecto', description: 'Un fragmento del kernel original de la red. Poder absoluto.', icon: 'auto_awesome', rarity: 'LEGENDARY', category: 'SOFTWARE', isUsable: true } */
+     { id: 'unstable_scrap', name: 'Residuo de Datos Inestable', description: 'Resultado de una síntesis fallida. Emite una radiación digital errática. Quizás alguien en el mercado negro sepa qué hacer con esto.', icon: 'running_with_errors', rarity: 'COMMON', category: 'HARDWARE', isUsable: true }
   ];
 
   for (const item of items) {

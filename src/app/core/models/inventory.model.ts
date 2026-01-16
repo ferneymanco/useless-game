@@ -8,6 +8,7 @@ export interface GlobalItem {
   category: 'HARDWARE' | 'SOFTWARE' | 'INTEL';
   isUsable: boolean; // ¿Se puede consumir?
   effectType?: 'REVEAL_HINT' | 'BOOST_XP' | 'REDUCE_COOLDOWN';
+  isDismantlable: boolean;
 }
 
 export interface UserItemRecord {

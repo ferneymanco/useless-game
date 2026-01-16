@@ -23,7 +23,11 @@
                 {{ loadingItem() === item.id ? 'PROCESSING...' : 'USE ITEM' }}
                 </button>
             </div>
-
+            <div class="item-card" *ngIf="item.id === 'unstable_scrap'">
+              <button (click)="onDismantle(item.id)" class="btn-dismantle">
+                <mat-icon>recycling</mat-icon> RECOVER SCRAP
+              </button>
+            </div>
             <div class="item-description">{{ item.description }}</div>
           </div>
 

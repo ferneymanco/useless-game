@@ -11,7 +11,7 @@
           <mat-icon class="result-icon">{{ recipe.resultIcon }}</mat-icon>
           <div class="result-meta">
             <span class="name">{{ recipe.resultName }}</span>
-            <span class="type">OUTPUT UNIT</span>
+            <span class="type"> [OUTPUT UNIT]</span>
           </div>
         </div>
 
@@ -19,7 +19,7 @@
           @for (ing of recipe.ingredientsStatus; track ing.id) {
             <div class="ing-item" [class.insufficient]="!ing.hasEnough">
               <span class="ing-name">{{ ing.name }}</span>
-              <span class="ing-qty">{{ ing.owned }}/{{ ing.required }}</span>
+              <span class="ing-qty"> - {{ ing.owned }}/{{ ing.required }}</span>
             </div>
           }
         </div>
@@ -32,5 +32,37 @@
         </button>
       </div>
     }
+  </div>
+</div>
+
+<div class="success-overlay" *ngIf="showSuccessOverlay()">
+  <div class="reveal-card" [attr.data-rarity]="lastCraftedItem()?.resultRarity">
+    <div class="scan-line"></div>
+    <mat-icon class="reveal-icon">{{ lastCraftedItem()?.resultIcon }}</mat-icon>
+    <div class="reveal-text">
+      <span class="status">SYNTHESIS COMPLETE</span>
+      <h2 class="item-name">{{ lastCraftedItem()?.resultName }}</h2>
+      <span class="rarity-tag">{{ lastCraftedItem()?.resultRarity }}</span>
+    </div>
+    <button class="btn-confirm" (click)="addVault()">ADD TO VAULT</button>
+    <button class="btn-decline" (click)="closeOverlay()">DECLINE</button>
+  </div>
+</div>
+
+<div class="lore-overlay" *ngIf="currentLore()">
+  <div class="terminal-dialog">
+    <div class="terminal-header">
+      <span class="blink">●</span> INCOMING_TRANSMISSION: {{ currentLore()?.sender }}
+    </div>
+    
+    <div class="terminal-body">
+      <p class="typewriter-text">> {{ displayedText() }}<span class="cursor">_</span></p>
+    </div>
+
+    <div class="terminal-footer">
+      <button (click)="nextLoreLine()" class="btn-terminal">
+        [ CONTINUAR_SEQ ]
+      </button>
+    </div>
   </div>
 </div>

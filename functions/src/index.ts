@@ -51,3 +51,4 @@ export const syncFieldNode = functions.https.onCall(async (data, context) => {
 
 export * from './missions';
 export * from './crafting';
+export * from './inventory';

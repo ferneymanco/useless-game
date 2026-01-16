@@ -15,4 +15,5 @@ export interface PlayerProfile {
   completedMissions: string[]; // Array de IDs de misiones completadas
   decryptedNodes?: number; // Nodos descifrados
   currentBadge?: string; // Badge equipado
+  unlockedLore?: string[]; // Array de IDs de lore desbloqueados
 }
