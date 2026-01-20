@@ -14,7 +14,7 @@
             
             <!-- Artifacts Row -->
             <div class="artifacts-row">
-                @for(   artifact of artifacts; track $index) {
+                @for(artifact of artifacts; track $index) {
                     <app-artifact-card [title]="artifact.title" [visuals]="artifact.visuals" [status]="artifact.status" [sensors]="artifact.sensors" [classified]="artifact.classified"></app-artifact-card>
                 }
             </div>

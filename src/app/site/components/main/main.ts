@@ -5,6 +5,7 @@ import { StatusHeader } from "../status-header/status-header";
 import { ArtifactCard } from "../artifact-card/artifact-card";
 import { LiveFeed } from "../live-feed/live-feed";
 import { SecurityPopup } from "../security-popup/security-popup";
+import { ARTIFACT_CATALOG } from '../../../core/constants/site-artifacts-log';
 
 @Component({
   standalone: true,
@@ -14,10 +15,11 @@ import { SecurityPopup } from "../security-popup/security-popup";
   styleUrl: './main.scss',
 })
 export class Main {
+  public artifacts = Object.values(ARTIFACT_CATALOG);
+ 
+  /*  mouseX = 0;
+    mouseY = 0; */
 
-  mouseX = 0;
-  mouseY = 0;
-  
   // Popup State
   isPopupVisible = false;
   
@@ -26,13 +28,14 @@ export class Main {
   enterBtnText = '[ REQUEST SPECIMEN ACCESS ]';
   enterBtnStyle: { [klass: string]: any } = {};
 
-  @HostListener('window:mousemove', ['$event'])
+ /*  @HostListener('window:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
     this.mouseX = event.clientX;
     this.mouseY = event.clientY;
-  }
+  } */
 
   openPopup() {
+    console.log('this.artifacts', this.artifacts);
     this.isPopupVisible = true;
   }
 
@@ -59,29 +62,5 @@ export class Main {
         }, 800);
       }, 500);
   }
-
-  public artifacts: any[] = [
-    {
-      title: '01: THE REACTIVE',
-      visuals: '🪳',
-      status: 'ACTIVE',
-      sensors: 'RF / STATIC',
-      classified: false
-    },
-    {
-      title: '02: THE PARASITE',
-      visuals: '🪳',
-      status: 'ACTIVE',
-      sensors: 'RF / STATIC',
-      classified: false
-    },
-    {
-      title: '03: THE RESONATOR',
-      visuals: '🪳',
-      status: 'ACTIVE',
-      sensors: 'RF / STATIC',
-      classified: true
-    }
-  ];
 
 }
