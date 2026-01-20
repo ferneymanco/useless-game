@@ -85,29 +85,3 @@ export class Main {
   ];
 
 }
-
-  public artifacts: any[] = [
-    {
-      title: '01: THE REACTIVE',
-      visuals: '🪳',
-      status: 'ACTIVE',
-      sensors: 'RF / STATIC',
-      classified: false
-    },
-    {
-      title: '02: THE PARASITE',
-      visuals: '🪳',
-      status: 'ACTIVE',
-      sensors: 'RF / STATIC',
-      classified: false
-    },
-    {
-      title: '03: THE RESONATOR',
-      visuals: '🪳',
-      status: 'ACTIVE',
-      sensors: 'RF / STATIC',
-      classified: true
-    }
-  ];
-
-}
