@@ -1,0 +1,40 @@
+<!-- Landing Page / Loading Overlay -->
+    <div id="loading-screen" [ngStyle]="loadingScreenStyle">
+        <app-status-header></app-status-header>
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1>THE REACTIVE FILE</h1>
+            <p>
+                Hardware without commercial purpose. Devices that do not execute tasks, only existence. Welcome to the Artifact Index. Selection of hand-made reactive units.
+            </p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="main-grid">
+            
+            <!-- Artifacts Row -->
+            <div class="artifacts-row">
+                @for(   artifact of artifacts; track $index) {
+                    <app-artifact-card [title]="artifact.title" [visuals]="artifact.visuals" [status]="artifact.status" [sensors]="artifact.sensors" [classified]="artifact.classified"></app-artifact-card>
+                }
+            </div>
+
+            <!-- Live Feed Panel -->
+            <app-live-feed></app-live-feed>
+
+        </div>
+
+        <!-- Footer Action -->
+        <div class="footer-action">
+            <button id="enter-btn" (click)="openPopup()" [ngStyle]="enterBtnStyle">
+                {{ enterBtnText }}
+            </button>
+            <div class="notification-setting">
+                NOTIFICATION FREQUENCY:
+                <div class="setting-line"></div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Steampunk Security Popup -->
+  <app-security-popup *ngIf="isPopupVisible" (accessGranted)="onAccessGranted()" (cancel)="closePopup()"></app-security-popup>

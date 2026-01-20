@@ -69,6 +69,7 @@ export class WorkshopComponent {
       if (status === 'UNSTABLE_COLLAPSE') {
         this.lastCraftedItem.set({
             id: "unstable_scrap",
+            resultItemId: "unstable_scrap", 
             resultName: 'COLLAPSE DETECTED',
             resultIcon: 'warning',
             resultRarity: 'COMMON',

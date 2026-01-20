@@ -1,0 +1,36 @@
+.card-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.specimen-image {
+    max-width: 300px;
+    height: auto;
+    display: block; /* Ensure no extra inline spacing */
+}
+
+/* .classified-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg); // Centered + rotated
+    border: 5px solid red;
+    padding: 10px 20px;
+    color: red;
+    font-weight: bold;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); // Semi-transparent bg for readability
+    mix-blend-mode: hard-light; // Blend with image
+    pointer-events: none; // Let clicks pass through
+} */
+
+.card-visual{
+    filter: sepia(0.8) contrast(1.1) brightness(0.9);
+    :hover,
+    :focus,
+    :active{
+        border: #00ff00 solid 1px;
+    }
+}

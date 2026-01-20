@@ -107,3 +107,14 @@
   color: white;
   box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
 }
+
+/* En el CSS de tu componente de barra de energía */
+.bar-fill.recharging {
+  animation: power-surge 0.5s infinite alternate;
+  background: #ffffff !important; /* Brillo blanco intenso */
+}
+
+@keyframes power-surge {
+  from { box-shadow: 0 0 10px #fff; }
+  to { box-shadow: 0 0 30px var(--aethelgard-amber); }
+}

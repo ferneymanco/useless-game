@@ -18,6 +18,7 @@ export class InventoryComponent {
   private inventoryService = inject(InventoryService);
   inventory = this.inventoryService.fullInventory;
   loadingItem = signal<string | null>(null); // Para mostrar un spinner en el item usado
+  isRecharging = signal<boolean>(false);
    /*  inventory = signal<InventoryItem[]>([
         { id: 'signal_fragment', name: 'Signal Fragment', description: 'Corrupted data recovered from the Decryptor.', icon: 'memory', rarity: 'COMMON', quantity: 5, category: 'INTEL', isUsable: true, effectType: 'REVEAL_HINT' },
         { id: 'encryption_core', name: 'Encryption Core', description: 'High-end hardware for secure servers.', icon: 'security', rarity: 'RARE', quantity: 1, category: 'HARDWARE', isUsable: true, effectType: 'BOOST_XP' },
@@ -25,6 +26,29 @@ export class InventoryComponent {
     ]); */
   async useItem(item: GlobalItem) {
     if (!item.isUsable || item.quantity <= 0) return;
+
+
+    if (item.id === 'energy_cell') {
+      const useFn = httpsCallable(this.functions, 'useEnergyCell');
+    
+      try {
+        // Disparar animación de carga (puedes usar un flag CSS)
+        this.isRecharging.set(true); 
+        
+        const result: any = await useFn();
+        
+        if (result.data.success) {
+          // Feedback auditivo o visual
+          console.log("SISTEMA: Núcleo reestablecido a " + result.data.newEnergy);
+        }
+      } catch (error) {
+        alert("ERROR: Fallo en la transferencia de energía.");
+      } finally {
+        setTimeout(() => this.isRecharging.set(false), 1000);
+      }
+    }
+
+
 
     this.loadingItem.set(item.id);
     const useFn = httpsCallable(this.functions, 'consumeItem');

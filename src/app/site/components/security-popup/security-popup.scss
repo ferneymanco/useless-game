@@ -1,0 +1,72 @@
+#security-popup {
+    /* Fixed position relative to window */
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    
+    width: 350px; 
+    padding: 30px;
+    background: #1a1510;
+    border: 3px solid #b87333;
+    outline: 2px solid #5e3b1f;
+    outline-offset: -10px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
+    z-index: 10001;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    color: #d4af37;
+}
+
+#passkey-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #000;
+    border: 1px solid #b87333;
+    color: #ffaa00;
+    font-family: inherit;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 3px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#error-msg {
+    color: #ff3333;
+    font-size: 0.7rem;
+    height: 20px;
+    margin-bottom: 10px;
+    visibility: hidden;
+}
+
+#cancel-btn {
+    background: #b87333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+#cancel-btn:hover {
+    background: #ffaa00;
+}
+
+#verify-btn {
+    background: linear-gradient(to bottom, #b87333, #8a5220); 
+    border: 1px solid #ffcc00;
+    color: #1a0f00;
+    font-weight: bold;
+    padding: 8px 25px;
+    font-family: inherit;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}

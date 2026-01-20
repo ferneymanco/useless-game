@@ -13,6 +13,7 @@ import { InventoryComponent } from './features/inventory/inventory.component';
 import { WorkshopComponent } from './features/workshop/workshop.component';
 import { LoreDatabaseComponent } from './features/lore-database/lore-database.component';
 import { EnergyBarComponent } from './shared/energy-bar/energy-bar.component';
+import { Main } from './site/components/main/main';
 
 export const routes: Routes = [
   { path: 'test', component: AptitudeTestComponent },
@@ -35,5 +36,6 @@ export const routes: Routes = [
   { path: 'workshop', component: WorkshopComponent, /* canActivate: [levelGuard(2)] */ },
   { path: 'lore', component: LoreDatabaseComponent, /* canActivate: [levelGuard(2)] */ },
   { path: 'energy', component: EnergyBarComponent },
-  //{ path: '', redirectTo: '/test', pathMatch: 'full' }
+  { path: 'main', component: Main },
+  { path: '', redirectTo: '/main', pathMatch: 'full' }
 ];

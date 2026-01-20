@@ -1,0 +1,14 @@
+<div class="artifact-card">
+    <div class="card-visual">
+        <!-- <span>{{visuals}}</span> -->
+        <img src="observer_image.png" class="specimen-image">
+        @if(classified) {
+            <div class="classified-badge">CLASSIFIED</div>
+        }
+    </div>
+    <div class="card-title">{{title}}</div>
+    <div class="card-status">
+        STATUS: [ {{status}} ]<br>
+        SENSORS: {{sensors}}
+    </div>
+</div>

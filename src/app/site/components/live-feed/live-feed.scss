@@ -1,0 +1,46 @@
+.live-feed {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #0d1117; /* Dark background */
+  color: #c9d1d9; /* Light text */
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace; /* Monospace for terminal feel */
+  border: 1px solid #30363d;
+
+  .feed-header {
+    font-weight: bold;
+    color: #58a6ff;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  .feed-alert {
+    color: #d29922; /* Warning color */
+    margin-bottom: 10px;
+    font-weight: bold;
+    animation: blink 1s infinite;
+  }
+
+  .feed-log {
+    white-space: pre-wrap; /* This fixes the newline issue */
+    word-wrap: break-word;
+  }
+
+  .feed-icon {
+    align-self: flex-end;
+    color: #58a6ff;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

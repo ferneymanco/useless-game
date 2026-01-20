@@ -36,3 +36,48 @@ export const dismantleItem = functions.https.onCall(async (data, context) => {
     return { success: true, recovered: materials };
   });
 });
+
+
+// functions/src/inventory.ts
+
+export const useEnergyCell = functions.https.onCall(async (data, context) => {
+  const uid = context.auth?.uid;
+  if (!uid) throw new functions.https.HttpsError('unauthenticated', '...');
+
+  const userRef = admin.firestore().collection('players').doc(uid);
+  const itemRef = userRef.collection('inventory').doc('energy_cell');
+
+  return admin.firestore().runTransaction(async (transaction) => {
+    const playerSnap = await transaction.get(userRef);
+    const itemSnap = await transaction.get(itemRef);
+
+    // 1. Validaciones
+    if (!itemSnap.exists || itemSnap.data()?.quantity <= 0) {
+      throw new Error("No tienes Células de Energía.");
+    }
+
+    const playerData = playerSnap.data();
+    const now = admin.firestore.Timestamp.now();
+
+    // 2. Calcular energía actual con regeneración pasiva
+    const elapsed = now.seconds - playerData?.lastEnergyUpdate?.seconds;
+    const regenerated = Math.floor(elapsed / playerData?.regenRate);
+    const currentEnergy = Math.min(playerData?.maxEnergy, playerData?.energy + regenerated);
+
+    // 3. Aplicar el Bono (+10) sin pasar el máximo
+    const energyBoost = 10;
+    const finalEnergy = Math.min(playerData?.maxEnergy, currentEnergy + energyBoost);
+
+    // 4. Actualizar base de datos
+    transaction.update(userRef, {
+      energy: finalEnergy,
+      lastEnergyUpdate: now // Importante: Reseteamos para que la regen empiece de cero desde aquí
+    });
+
+    transaction.update(itemRef, {
+      quantity: admin.firestore.FieldValue.increment(-1)
+    });
+
+    return { success: true, newEnergy: finalEnergy };
+  });
+});

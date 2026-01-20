@@ -1,0 +1,21 @@
+<div id="security-popup">
+    <!-- Bolts -->
+    <div style="position: absolute; top: 10px; left: 10px; width: 8px; height: 8px; background: #b87333; border-radius: 50%; box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);"></div>
+    <div style="position: absolute; top: 10px; right: 10px; width: 8px; height: 8px; background: #b87333; border-radius: 50%; box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);"></div>
+    <div style="position: absolute; bottom: 10px; left: 10px; width: 8px; height: 8px; background: #b87333; border-radius: 50%; box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);"></div>
+    <div style="position: absolute; bottom: 10px; right: 10px; width: 8px; height: 8px; background: #b87333; border-radius: 50%; box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);"></div>
+
+    <h3 style="margin: 0 0 20px 0; color: #eebb55; text-transform: uppercase; border-bottom: 1px solid #5e3b1f; padding-bottom: 10px; letter-spacing: 2px;">Identification</h3>
+    
+    <div style="margin-bottom: 20px; font-size: 0.8rem; color: #997755;">ENTER ACCESS SEQUENCE</div>
+
+    <input type="password" id="passkey-input" [(ngModel)]="passkey" (keyup.enter)="verifyAccess()" 
+           [style.borderColor]="isError ? '#ff0000' : '#b87333'">
+
+    <div id="error-msg" [style.visibility]="isError ? 'visible' : 'hidden'">INVALID SEQUENCE</div>
+
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <button id="cancel-btn" (click)="onCancel()">Cancel</button>
+      <button id="verify-btn" (click)="verifyAccess()">Verify</button>
+    </div>
+</div>

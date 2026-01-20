@@ -77,7 +77,17 @@ async seedGlobalCatalog() {
     // LEGENDARY (Oro/Aethelgard Amber)
     { id: 'master_keycard', name: 'Tarjeta Maestra Aethelgard', description: 'Acceso físico a los servidores centrales del bastión.', icon: 'vibration', rarity: 'LEGENDARY', category: 'HARDWARE', isUsable: false },
     { id: 'architect_code', name: 'Código del Arquitecto', description: 'Un fragmento del kernel original de la red. Poder absoluto.', icon: 'auto_awesome', rarity: 'LEGENDARY', category: 'SOFTWARE', isUsable: true } */
-     { id: 'unstable_scrap', name: 'Residuo de Datos Inestable', description: 'Resultado de una síntesis fallida. Emite una radiación digital errática. Quizás alguien en el mercado negro sepa qué hacer con esto.', icon: 'running_with_errors', rarity: 'COMMON', category: 'HARDWARE', isUsable: true }
+     /* { id: 'unstable_scrap', name: 'Residuo de Datos Inestable', description: 'Resultado de una síntesis fallida. Emite una radiación digital errática. Quizás alguien en el mercado negro sepa qué hacer con esto.', icon: 'running_with_errors', rarity: 'COMMON', category: 'HARDWARE', isUsable: true } */
+     { 
+  id: 'energy_cell', 
+  name: 'Energy Cell  (L1)', 
+  description: 'Sobrecarga el núcleo con +10 unidades de energía. El uso excesivo puede causar inestabilidad.', 
+  icon: 'battery_charging_full', 
+  rarity: 'UNCOMMON', 
+  category: 'HARDWARE', 
+  isUsable: true,
+  effectType: 'RESTORE_ENERGY' 
+}
   ];
 
   for (const item of items) {
