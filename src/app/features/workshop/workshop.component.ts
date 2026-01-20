@@ -9,6 +9,7 @@ import { Functions, httpsCallable } from '@angular/fire/functions';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LORE_MESSAGES } from '../../core/constants/lore.constants';
 import { FormsModule } from "@angular/forms";
+import { EnergyService } from '../../core/services/energy.service';
 
 @Component({
   selector: 'app-workshop',
@@ -25,6 +26,7 @@ export class WorkshopComponent {
   showSuccessOverlay = signal<boolean>(false);
   currentLore = signal<{sender: string, text: string[], currentIndex: number} | null>(null);
   displayedText = signal<string>('');
+  energyService = inject(EnergyService);
   
   recipes = CRAFTING_RECIPES;
   isCrafting = signal<string | null>(null);
@@ -79,10 +81,15 @@ export class WorkshopComponent {
         this.lastCraftedItem.set({ ...recipe, isUnstable: false });
 
         this.showSuccessOverlay.set(true);
-        this.triggerLore(craftedItem);
+        //this.triggerLore(craftedItem);
       }
+
+      await this.energyService.consumeEnergy(recipe.energyCost);
     } catch (error) {
-      this.snackBar.open('CRAFTING ERROR: Connection unstable', 'RETRY', { duration: 3000 });
+
+      let error_message = error?.toString().replace("FirebaseError: ", "").replace(/(\r\n|\n|\r)/gm, " ") || 'Connection unstable';
+      this.snackBar.open('CRAFTING ERROR: Connection unstable', error_message, { duration: 5000 });
+    
     } finally {
       this.isCrafting.set(null);
     }
@@ -121,7 +128,7 @@ export class WorkshopComponent {
 
   addVault() {
     const vaultFn = httpsCallable(this.functions, 'addItem');
-    vaultFn({ itemId: this.lastCraftedItem()?.id, quantity: 1 }).then((result: any) => {
+    vaultFn({ itemId: this.lastCraftedItem()?.resultItemId, quantity: 1 }).then((result: any) => {
       this.closeOverlay();
     });
   }

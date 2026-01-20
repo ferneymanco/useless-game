@@ -1,0 +1,42 @@
+<!-- <div class="energy-bar-container">
+  <div class="energy-header">
+    <mat-icon class="energy-icon">bolt</mat-icon>
+    <span class="energy-label">ENERGY</span>
+    <span class="energy-value">{{ currentEnergy() }} / {{ maxEnergy() }}</span>
+  </div>
+  
+  <div class="energy-bar-wrapper">
+    <div 
+      class="energy-bar-fill" 
+      [attr.data-status]="energyStatus"
+      [style.width.%]="energyPercentage">
+      <div class="energy-glow"></div>
+    </div>
+    <div class="energy-bar-bg"></div>
+  </div>
+
+  <div class="energy-status-text">
+    @if (energyStatus === 'critical') {
+      <span class="status-critical">⚠ CRITICAL - RECHARGING</span>
+    } @else if (energyStatus === 'low') {
+      <span class="status-low">⚡ LOW POWER</span>
+    } @else if (energyStatus === 'full') {
+      <span class="status-full">✓ FULLY CHARGED</span>
+    } @else {
+      <span class="status-normal">● OPERATIONAL</span>
+    }
+  </div>
+</div> -->
+
+
+<div class="energy-container">
+  <div class="label">
+    <mat-icon>bolt</mat-icon>
+    <span>CORE_POWER</span>
+  </div>
+  
+  <div class="bar-bg">
+    <div class="bar-fill" [style.width.%]="(energyService.currentEnergy() / 20) * 100"></div>
+    <span class="value">{{ energyService.currentEnergy() }} / 20</span>
+  </div>
+</div>

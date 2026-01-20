@@ -1,6 +1,7 @@
 //functions/src/crafting.ts
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { checkEnergy, decrementItems, wasteEnergy } from './shared/economy';
 
 // Importamos las recetas desde el modelo compartido
 // Nota: Deberás copiar o compartir CRAFTING_RECIPES entre frontend y backend
@@ -30,7 +31,16 @@ export const craftItem = functions.https.onCall(async (data, context) => {
   if (!recipe) throw new functions.https.HttpsError('not-found', 'Receta no válida');
 
   const userRef = admin.firestore().collection('players').doc(uid);
+  const playerSnap = await userRef.get();
+  const player = playerSnap.data();
+  const cost = 5;
+
   
+  const procced = await checkEnergy(player, cost);
+  if (!procced) {
+    throw new functions.https.HttpsError('failed-precondition', 'CORE_POWER_INSUFFICIENT');
+  }
+
   return admin.firestore().runTransaction(async (transaction) => {
     // 1. Validar ingredientes
     for (const ing of recipe.ingredients) {
@@ -43,14 +53,13 @@ export const craftItem = functions.https.onCall(async (data, context) => {
         );
       }
     }
-
+  
     // 2. Consumir ingredientes
     for (const ing of recipe.ingredients) {
-      const ingRef = userRef.collection('inventory').doc(ing.itemId);
-      transaction.update(ingRef, { 
-        quantity: admin.firestore.FieldValue.increment(-ing.quantity)
-      });
+      await decrementItems(transaction, userRef, ing.itemId, ing.quantity);
     }
+
+    await wasteEnergy(transaction, userRef, cost);
 
     // 3. DETERMINAR ÉXITO O FALLO (5% de probabilidad de fallo)
     const isUnstable = Math.random() < 0.10; 

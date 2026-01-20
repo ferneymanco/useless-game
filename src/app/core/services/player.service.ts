@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { Firestore, doc, setDoc, docData, updateDoc } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, docData, updateDoc, Timestamp } from '@angular/fire/firestore';
 import { Auth, user, signInWithPopup, GoogleAuthProvider, signOut } from '@angular/fire/auth';
 import { PlayerProfile, PlayerRole } from '../models/player.model';
 import { Observable, switchMap, of } from 'rxjs';
@@ -52,7 +52,11 @@ export class PlayerService {
       foundNodes: [],
       unlockedFeatures: [],
       donorLevel: 'none',
-      completedMissions: [] 
+      completedMissions: [] ,
+      energy: 20,
+      lastEnergyUpdate: Timestamp.now(),
+      maxEnergy: 20,
+      regenRate: 300
     };
 
     const userDoc = doc(this.firestore, `players/${u.uid}`);
@@ -71,19 +75,6 @@ export class PlayerService {
       });
     }
   }
-
-  /* getCompleteInventory() {
-    const playerItems = this.getInventoryFromUser(); // Lo que tiene el usuario (ID + Cantidad)
-    const globalCatalog = this.getGlobalItems();      // El catálogo (Nombre + Icono)
-
-    return playerItems.map(pItem => {
-      const details = globalCatalog.find(g => g.id === pItem.id);
-      return {
-        ...pItem,
-        ...details // Combinamos la cantidad del usuario con los visuales globales
-      };
-    });
-  } */
 
   logout() {
     signOut(this.auth);
