@@ -1,22 +1,24 @@
 <!-- Landing Page / Loading Overlay -->
     <div id="loading-screen" [ngStyle]="loadingScreenStyle">
         <app-status-header></app-status-header>
-        <!-- Title Section -->
-        <div class="title-section">
-            <h1>THE REACTIVE FILE</h1>
-            <p>
-                Hardware without commercial purpose. Devices that do not execute tasks, only existence. Welcome to the Artifact Index. Selection of hand-made reactive units.
-            </p>
-        </div>
-
-        <!-- Main Content Grid -->
+        <!-- Main Grid for Title, Artifacts and Live Feed -->
         <div class="main-grid">
             
-            <!-- Artifacts Row -->
-            <div class="artifacts-row">
-                @for(artifact of artifacts; track $index) {
-                    <app-artifact-card [title]="artifact.title" [visuals]="artifact.visuals" [status]="artifact.status" [sensors]="artifact.sensors" [classified]="artifact.classified"></app-artifact-card>
-                }
+            <div class="content-column">
+                <!-- Title Section -->
+                <div class="title-section">
+                    <h1>THE REACTIVE FILE</h1>
+                    <p>
+                        Hardware without commercial purpose. Devices that do not execute tasks, only existence. Welcome to the Artifact Index. Selection of hand-made reactive units.
+                    </p>
+                </div>
+
+                <!-- Artifacts Row -->
+                <div class="artifacts-row">
+                    @for(artifact of artifacts; track $index) {
+                        <app-artifact-card [artefactData]="artifact"></app-artifact-card>
+                    }
+                </div>
             </div>
 
             <!-- Live Feed Panel -->

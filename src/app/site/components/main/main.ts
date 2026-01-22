@@ -6,6 +6,7 @@ import { ArtifactCard } from "../artifact-card/artifact-card";
 import { LiveFeed } from "../live-feed/live-feed";
 import { SecurityPopup } from "../security-popup/security-popup";
 import { ARTIFACT_CATALOG } from '../../../core/constants/site-artifacts-log';
+import { Artefact } from '../../../core/models/artefact';
 
 @Component({
   standalone: true,
@@ -15,7 +16,7 @@ import { ARTIFACT_CATALOG } from '../../../core/constants/site-artifacts-log';
   styleUrl: './main.scss',
 })
 export class Main {
-  public artifacts = Object.values(ARTIFACT_CATALOG);
+  public artifacts: Artefact[] = Object.values(ARTIFACT_CATALOG) as Artefact[];
  
   /*  mouseX = 0;
     mouseY = 0; */
@@ -35,7 +36,6 @@ export class Main {
   } */
 
   openPopup() {
-    console.log('this.artifacts', this.artifacts);
     this.isPopupVisible = true;
   }
 

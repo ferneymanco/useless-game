@@ -14,6 +14,7 @@ import { WorkshopComponent } from './features/workshop/workshop.component';
 import { LoreDatabaseComponent } from './features/lore-database/lore-database.component';
 import { EnergyBarComponent } from './shared/energy-bar/energy-bar.component';
 import { Main } from './site/components/main/main';
+import { LocationMapComponent } from './site/components/location-map/location-map';
 
 export const routes: Routes = [
   { path: 'test', component: AptitudeTestComponent },
@@ -23,7 +24,7 @@ export const routes: Routes = [
   { path: 'elite-access', component: EliteDashboardComponent, canActivate: [EliteGuard] },
   { path: 'missions', component: MissionDispatcherComponent },
   { 
-    path: 'admin', 
+    path: '_lazzarus_admin_protocol', 
     loadComponent: () => import('./features/admin/admin-console.component').then(m => m.AdminConsoleComponent) 
   },
   { 
@@ -37,5 +38,6 @@ export const routes: Routes = [
   { path: 'lore', component: LoreDatabaseComponent, /* canActivate: [levelGuard(2)] */ },
   { path: 'energy', component: EnergyBarComponent },
   { path: 'main', component: Main },
-  { path: '', redirectTo: '/main', pathMatch: 'full' }
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: 'map', component: LocationMapComponent }
 ];

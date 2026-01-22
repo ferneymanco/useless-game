@@ -8,7 +8,7 @@ export class EnergyService {
   
   // Signal que emite la energía calculada
   currentEnergy = signal(0);
-  maxEnergy = computed(() => this.playerService.player()?.maxEnergy || 100);
+  public maxEnergy = computed(() => this.playerService.player()?.maxEnergy || 100);
   
   private intervalId: any = null;
   
@@ -49,13 +49,9 @@ export class EnergyService {
   // Método para consumir energía (llamar desde componentes)
   async consumeEnergy(amount: number): Promise<boolean> {
     const current = this.currentEnergy();
-    console.log('amount', amount);
-    console.log('current', current);
     if (current >= amount) {
       this.currentEnergy.set(current - amount);
       // Aquí deberías actualizar Firestore también
-      console.log('consumed', amount);
-      console.log('current', current);
       return true;
     }
     return false;

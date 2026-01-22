@@ -1,3 +1,5 @@
+import { Artefact } from "../models/artefact";
+
 // src/app/core/constants/lore.constants.ts
 export const ARTIFACT_LOG: Record<string, {text: string[] }> = {
   '0': {
@@ -14,26 +16,30 @@ export const ARTIFACT_LOG: Record<string, {text: string[] }> = {
   }
 };
 
-export const ARTIFACT_CATALOG: Record<string, {title: string, visuals: string, status: string, sensors: string, classified: boolean}> = {
+export const ARTIFACT_CATALOG: Record<string, Artefact> = {
+ 
   "0": {
-      title: '01: THE OBSERVER',
-      visuals: '🪳',
-      status: 'ACTIVE',
-      sensors: 'RF / STATIC',
-      classified: false
+    id: '0',
+    title: '01: THE OBSERVER',
+    status: 'ACTIVE',
+    sensors: 'RF / STATIC',
+    classified: false,
+    img: 'observer_image.png'
     },
     "1": {
+      id: '1',
       title: '02: THE PARASITE',
-      visuals: '🪳',
       status: 'ACTIVE',
       sensors: 'RF / STATIC',
-      classified: false
+      classified: true,
+      img: 'parasite_image.png'
     },
     "2": {
+      id: '2',
       title: '03: THE RESONATOR',
-      visuals: '🪳',
       status: 'ACTIVE',
       sensors: 'RF / STATIC',
-      classified: true
+      classified: true,
+      img: 'espectrum_image.png'
     }
   }

@@ -20,7 +20,6 @@ export class LeaderboardComponent implements OnInit {
     try {
       const result: any = await getLeaderboard();
       this.agents.set(result.data.leaderboard);
-      console.log('AGENTS',this.agents());
     } finally {
       this.loading.set(false);
     }

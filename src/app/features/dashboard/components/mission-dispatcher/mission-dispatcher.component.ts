@@ -30,7 +30,6 @@ nextLevelValue = 1;
   missions$ = this.missionService.getAvailableMissions();
 
   ngOnInit() {
-    console.log('Player role:', this.playerRole());
     this.missions$.subscribe(missions => {
       console.log('Missions:', missions);
     })
@@ -72,7 +71,6 @@ nextLevelValue = 1;
 
           if (result.data.success) {
             // Si hubo Level Up, disparamos el efecto que creamos antes
-            console.log('LEVEL UP:',result);
             if (result.data.leveledUp) {
               this.triggerLevelUp(result.data.nextLevel);
             } else {

@@ -1,0 +1,74 @@
+.map-wrapper {
+    background: #000;
+    width: 100%;
+    height: 500px;
+}
+.land {
+    fill: none;
+    stroke: #00ff41; /* Verde matriz/fósforo */
+    stroke-width: 0.5px;
+    opacity: 0.3;
+}
+.node {
+    fill: #00ff41;
+    filter: drop-shadow(0 0 5px #00ff41);
+}
+.blink {
+    animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+}
+@keyframes blinker {
+    from { opacity: 1; r: 4; }
+    to { opacity: 0.2; r: 8; }
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(0, 20, 0, 0.9); /* Fondo verde muy oscuro */
+  border: 1px solid #00ff41;
+  color: #00ff41;
+  padding: 8px 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  pointer-events: none; /* Evita que el tooltip interfiera con el mouse */
+  opacity: 0;
+  transition: opacity 0.2s;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  z-index: 100;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.tooltip-header {
+  border-bottom: 1px solid #00ff41;
+  margin-bottom: 5px;
+  font-weight: bold;
+  display: block;
+}
+
+/* Animación de desplazamiento del filtro */
+@keyframes noise-anim {
+  0% { transform: translate(0,0); }
+  10% { transform: translate(-1px, -1px); }
+  20% { transform: translate(2px, 1px); }
+  30% { transform: translate(-2px, -2px); }
+  100% { transform: translate(0,0); }
+}
+
+.glitch-active {
+  filter: url(#glitch-filter); // Aplicamos el filtro SVG 
+  stroke: #ff003c !important; // Cambia a rojo neón durante el glitch 
+  stroke-width: 1.5px !important;
+  opacity: 1 !important;
+  animation: noise-anim 0.1s infinite;
+}
+
+.tooltip-glitch {
+  animation: shake 0.2s infinite;
+  color: #ff003c;
+  border-color: #ff003c;
+}
+
+@keyframes shake {
+  0% { clip-path: inset(20% 0 50% 0); transform: translate(-2px); }
+  50% { clip-path: inset(80% 0 10% 0); transform: translate(2px); }
+  100% { clip-path: inset(10% 0 70% 0); transform: translate(-1px); }
+}

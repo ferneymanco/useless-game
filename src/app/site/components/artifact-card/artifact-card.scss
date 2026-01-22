@@ -6,7 +6,8 @@
 }
 
 .specimen-image {
-    max-width: 300px;
+    max-width: 100%;
+    max-height: 100%;
     height: auto;
     display: block; /* Ensure no extra inline spacing */
 }
@@ -28,9 +29,13 @@
 
 .card-visual{
     filter: sepia(0.8) contrast(1.1) brightness(0.9);
-    :hover,
+    /* :hover,
     :focus,
     :active{
-        border: #00ff00 solid 1px;
-    }
+        border: #00ff00 solid 1px!important;
+    } */
 }
+
+.card-visual:hover{
+        border: #00ff00 solid 1px!important;
+    }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Artefact } from '../../../core/models/artefact';
 
 @Component({
   selector: 'app-artifact-card',
@@ -7,10 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './artifact-card.scss',
 })
 export class ArtifactCard {
-  @Input() title: string = '01: THE REACTIVE';
-  @Input() visuals: string = '🪳';
-  @Input() status: string = 'ACTIVE';
-  @Input() sensors: string = 'RF / STATIC';
-  @Input() classified: boolean = false;
+  @Input() artefactData: Artefact = {id: '', title: '', status: '', sensors: '', classified: false, img: ''};
 
 }

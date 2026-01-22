@@ -29,7 +29,5 @@ export class EnergyBarComponent {
     if (percentage >= 25) return 'low';
     return 'critical';
   }
-  ngOnInit(): void {
-    console.log('currentEnergy', this.currentEnergy());
-  }
+
 }
