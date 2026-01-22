@@ -47,3 +47,4 @@ functions/lib/
 
 # Environment secrets (Very important!)
 src/environments/
+/src/environments
